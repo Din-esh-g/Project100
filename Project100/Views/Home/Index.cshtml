@@ -1,8 +1,27 @@
-﻿@{
+﻿
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@*<div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>*@
+
+
+
+
+
+                <body>
+                    
+                        <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Business", "View", "Businesses") </button>
+                        <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Checking", "Index", "Checkings")</button>
+                        <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Terms", "ViewTerm", "Terms")</button>
+                        <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Loan", "CustomLoan", "Loans")</button>
+                    
+
+                </body>
+              
+
+

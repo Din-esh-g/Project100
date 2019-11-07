@@ -12,6 +12,7 @@ using Project100.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Project100.Models;
 
 namespace Project100
 {
@@ -34,6 +35,16 @@ namespace Project100
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            //Step 3 
+            services.AddDbContext<BankContext>(options =>
+           options.UseSqlServer(
+               Configuration.GetConnectionString("BankContext")));
+            services.AddMvc();
+            //
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

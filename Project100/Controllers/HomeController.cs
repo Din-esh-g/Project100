@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ using Project100.Models;
 
 namespace Project100.Controllers
 {
+   
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -21,6 +23,22 @@ namespace Project100.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult ManinView(int? id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (id != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(userId);
+            }
+
+
         }
 
         public IActionResult Privacy()

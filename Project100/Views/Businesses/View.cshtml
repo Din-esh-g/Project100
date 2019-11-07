@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewData["Title"] = "View";
+}
+    <head>
+        
+        <style>
+            .btn-group button {
+                background-color: #4CAF50; /* Green background */
+                border: 1px solid green; /* Green border */
+                color: white; /* White text */
+                padding: 10px 24px; /* Some padding */
+                cursor: pointer; /* Pointer/hand icon */
+                width: 50%; /* Set a width if needed */
+                display: block; /* Make the buttons appear below each other */
+            }
+
+                .btn-group button:not(:last-child) {
+                    border-bottom: none; /* Prevent double borders */
+                }
+
+                /* Add a background color on hover */
+                .btn-group button:hover {
+                    background-color: #3e8e41;
+                }
+        </style>
+
+    </head>
+
+
+<h1>Testing Menu for the Business </h1>
+
+<p>Testing to back </p>
+
+<a>
+    <img src="~/image/depo.jpg" alt="Made a Deposit" asp-controller="Business" asp-action="Create" style="width:200px;height:200px;border:1px;">
+    <title>Deposit </title>
+
+
+</a>
+
+
+
+<img src="~/image/depo.jpg" alt="Made a Deposit" asp-controller="Business" asp-action="Create" style="width:200px;height:200px;border:1px;">
+@*<img class=" navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" src="image/logo.png" alt="Ravature Bank" />*@
+<p>
+    <a asp-action="Create">Create New</a>
+    <a asp-action="Edit">Edit</a>
+    <a asp-action="Index">List All</a>
+    <a asp-action="Delete">Delete</a>
+    <a asp-action="Details">Info </a>
+
+</p>
+
+
+
+<body>
+
+    <h1>Vertical Button Group</h1>
+
+    <div class="btn-group">
+        <button asp-action="Deposit">Deposit</button>
+        <button asp-action="Transfer">Transfer</button>
+        <button asp-action="Withdraw">Withdraw</button>
+    </div>
+
+</body>
+
+
