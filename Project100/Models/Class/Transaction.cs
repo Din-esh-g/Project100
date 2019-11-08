@@ -27,8 +27,9 @@ namespace Project100.Models
 
             [Display(Name = "Transaction Types")]
             public string type { get; set; }
-            [Display(Name = "Customer ID")]
-            public string CustomerId { get; set; }
+            [Display(Name = "Balance")]
+            public double balance { get; set; }
+        public string CustomerId { get; set; }
             public Customers Customer { get; set; }
             public Checking Checking { get; set; }
             public Business Business { get; set; }

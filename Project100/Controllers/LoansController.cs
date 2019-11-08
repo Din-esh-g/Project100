@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Project100.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Project100.Models.Class;
 
 namespace Project100.Controllers
 {
@@ -23,13 +24,13 @@ namespace Project100.Controllers
         }
 
         // GET: Loans
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.Loan.ToListAsync());
-        //}
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Loan.ToListAsync());
+        }
 
         //Test 
-        public async Task<IActionResult> Index(string id)
+        public async Task<IActionResult> CustomLon(string id)
         {
 
             if (id == null)
@@ -37,21 +38,187 @@ namespace Project100.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var term = await _context.Loan.FirstOrDefaultAsync
+            var loan = await _context.Loan.FirstOrDefaultAsync
               (m => m.CustomerId == id);
-            if (term != null)
+            if (loan != null)
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            return RedirectToAction("CustomLoan", "Loans");
+            return View(loan);
+
+        }
+
+
+        public IActionResult Payment(int id)
+        {
+
+
+            ViewData["Id"] = id;
+            return View();
+
+
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Payment(int id, int amount, int tid, string type)
+        {
+
+
+            try
+            {
+                Loan loan = new Loan();
+                loan = await _context.Loan.FirstOrDefaultAsync(c => c.accountNumber == id);
+
+                var x = 0 - amount;
+
+
+                if (x < loan.Balance)
+                {
+                    ViewData["ErrorMessage"] = "You can not pay more than the balance of your loan";
+                    return View();
+                }
+
+                else
+                {
+                    if (type == "checking")
+                    {
+                        Checking checking = new Checking();
+                        checking = await _context.Checking.FirstOrDefaultAsync(c => c.accountNumber == tid);
+
+                        if (checking != null)
+                        {
+                            if (checking.CustomerId != loan.CustomerId)
+                            {
+                                ViewData["ErrorMessage"] = $"You can only pay from your own accounts";
+                                return View();
+                            }
+                            else if (checking.Balance < amount)
+                            {
+
+                                ViewData["ErrorMessage"] = $"You do not have enough money in that account to make this payment";
+                                return View();
+                            }
+
+                            else
+                            {
+                                var newBalance = (checking.Balance - amount);
+                                checking.Balance = newBalance;
+
+                                Transaction transaction = new Transaction();
+                                transaction.accountNumber = id;
+                                transaction.accountType = "checking";
+                                transaction.amount = amount;
+                                transaction.date = DateTime.Now;
+                                transaction.type = "transfer out";
+
+                                _context.Update(checking);
+                                await _context.SaveChangesAsync();
+
+
+                                _context.Update(transaction);
+                                await _context.SaveChangesAsync();
+
+                                var newLoanBalance = (loan.Balance + amount);
+                                loan.Balance = newLoanBalance;
+
+                                Transaction totransaction = new Transaction();
+                                totransaction.accountNumber = id;
+                                totransaction.accountType = "loan";
+                                totransaction.amount = amount;
+                                totransaction.date = DateTime.Now;
+                                totransaction.type = "made payment";
+
+
+                                _context.Update(loan);
+                                await _context.SaveChangesAsync();
+
+                                _context.Update(totransaction);
+                                await _context.SaveChangesAsync();
+                            }
+                        }
+                        else
+                        {
+                            ViewData["ErrorMessage"] = "You have selected an invalid account";
+                            return View();
+                        }
+
+                    }
+                    else
+                    {
+                        Business business = new Business();
+                        business = await _context.Business.FirstOrDefaultAsync(c => c.accountNumber == tid);
+
+                        if (business != null)
+                        {
+                            if (business.CustomerId != loan.CustomerId)
+                            {
+                                ViewData["ErrorMessage"] = $"You can only pay from your own accounts";
+                                return View();
+                            }
+                            else
+                            {
+                                var newBalance = (business.Balance - amount);
+                                business.Balance = newBalance;
+
+                                Transaction transaction = new Transaction();
+                                transaction.accountNumber = id;
+                                transaction.accountType = "business";
+                                transaction.amount = amount;
+                                transaction.date = DateTime.Now;
+                                transaction.type = "transer out";
+
+                                _context.Update(business);
+                                await _context.SaveChangesAsync();
+
+
+                                _context.Update(transaction);
+                                await _context.SaveChangesAsync();
+
+                                var newLoanBalance = (loan.Balance + amount);
+                                loan.Balance = newLoanBalance;
+
+                                Transaction totransaction = new Transaction();
+                                totransaction.accountNumber = id;
+                                totransaction.accountType = "loan";
+                                totransaction.amount = amount;
+                                totransaction.date = DateTime.Now;
+                                totransaction.type = "made payment";
+
+
+                                _context.Update(loan);
+                                await _context.SaveChangesAsync();
+
+                                _context.Update(totransaction);
+                                await _context.SaveChangesAsync();
+                            }
+                        }
+                        else
+                        {
+                            ViewData["ErrorMessage"] = "You have selected an invalid account";
+                            return View();
+                        }
+                    }
+
+                }
+            }
+            catch
+            {
+                ViewData["ErrorMessage"] = "There was a problem with your payment please try again";
+                return View();
+            }
+            return RedirectToAction(nameof(CustomLon));
+
 
         }
 
 
         //End test
-   
-      
+
+
 
 
         // GET: Loans/Details/5

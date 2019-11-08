@@ -1,72 +1,67 @@
 ﻿@model IEnumerable<Project100.Models.Class.Business>
+
 @{
     ViewData["Title"] = "View";
 }
-<head>
 
-    <style>
-        .btn-group button {
-            background-color: #4CAF50; /* Green background */
-            border: 1px solid green; /* Green border */
-            color: white; /* White text */
-            padding: 10px 24px; /* Some padding */
-            cursor: pointer; /* Pointer/hand icon */
-            width: 50%; /* Set a width if needed */
-            display: block; /* Make the buttons appear below each other */
-        }
+<h1>View</h1>
 
-            .btn-group button:not(:last-child) {
-                border-bottom: none; /* Prevent double borders */
-            }
-
-            /* Add a background color on hover */
-            .btn-group button:hover {
-                background-color: #3e8e41;
-            }
-    </style>
-
-</head>
-
-
-<h1>Testing Menu for the Business </h1>
-
-<p>Testing to back </p>
-
-<a>
-    <img src="~/image/depo.jpg" alt="Made a Deposit" asp-controller="Business" asp-action="Create" style="width:200px;height:200px;border:1px;">
-    <title>Deposit </title>
-
-
-</a>
-
-
-
-<img src="~/image/depo.jpg" alt="Made a Deposit" asp-controller="Business" asp-action="Create" style="width:200px;height:200px;border:1px;">
-@*<img class=" navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" src="image/logo.png" alt="Ravature Bank" />*@
 <p>
     <a asp-action="Create">Create New</a>
-    <a asp-action="Edit">Edit</a>
-    <a asp-action="Index">List All</a>
-    <a asp-action="Delete">Delete</a>
-    <a asp-action="Details">Info </a>
 
+<h3>@ViewData["ErrorMessage"]</h3>
 </p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InterestRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.createdAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterestRate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.createdAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.accountNumber">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.accountNumber">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.accountNumber">Delete</a> |
+                    <a asp-action="Deposit" asp-route-id="@item.accountNumber">Deposit</a> |
+                    <a asp-action="Withdraw" asp-route-id="@item.accountNumber">Withdraw</a> |
+                    <a asp-action="Transfer" asp-route-id="@item.accountNumber">Transfer</a>
 
 
-
-<body>
-
-    <h1>Vertical Button Group</h1>
-
-    <div class="btn-group">
-        <button asp-action="Deposit">Deposit</button>
-        <button asp-action="Transfer">Transfer</button>
-        <button asp-action="Withdraw">Withdraw</button>
-    </div>
-    @foreach (var item in Model)
-    {
-        <a asp-controller="Transactions" asp-action="DisplayRecord" asp-route-id="@item.accountNumber" asp-route-type="business"> Transaction Log</a>
-    }
-    </body>
-
-
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

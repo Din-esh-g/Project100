@@ -205,6 +205,9 @@ namespace Project100.Migrations
                     b.Property<double>("amount")
                         .HasColumnType("float");
 
+                    b.Property<double>("balance")
+                        .HasColumnType("float");
+
                     b.Property<DateTime>("date")
                         .HasColumnType("datetime2");
 

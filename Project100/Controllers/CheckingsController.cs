@@ -46,6 +46,331 @@ namespace Project100.Controllers
             return View(checking);
         }
 
+        //test
+
+        public IActionResult Deposit(int id)
+        {
+
+            ViewData["Id"] = id;
+            return View();
+
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Deposit(int id, int amount)
+        {
+            if (amount > 0)
+            {
+
+
+                try
+                {
+                    Checking checking = new Checking();
+                    checking = await _context.Checking.FirstOrDefaultAsync(c => c.accountNumber == id);
+
+
+                    var newBalance = (checking.Balance + amount);
+                    checking.Balance = newBalance;
+                    _context.Update(checking);
+                    await _context.SaveChangesAsync();
+
+
+                    Transaction transaction = new Transaction();
+                    transaction.accountNumber = id;
+                    transaction.accountType = "Checking";
+                    transaction.amount = amount;
+                    transaction.date = DateTime.Now;
+                    transaction.type = "Deposit";
+                    transaction.balance = checking.Balance;
+
+
+
+                    _context.Update(transaction);
+                    await _context.SaveChangesAsync();
+
+                }
+                catch
+                {
+                    ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
+                    return View();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "No Negative amount...........";
+                return View();
+            }
+
+        }
+
+        public IActionResult Withdraw(int id)
+        {
+
+            ViewData["Id"] = id;
+            return View();
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Withdraw(int id, int amount)
+        {
+            Checking checking = new Checking();
+            checking = await _context.Checking.FirstOrDefaultAsync(c => c.accountNumber == id);
+            if (checking.Balance >= amount)
+            {
+
+                try
+                {
+
+                    var newBalance = (checking.Balance - amount);
+                    checking.Balance = newBalance;
+
+                    _context.Update(checking);
+                    await _context.SaveChangesAsync();
+
+                    Transaction transaction = new Transaction();
+                    transaction.accountNumber = id;
+                    transaction.accountType = "Business";
+                    transaction.amount = amount;
+                    transaction.date = DateTime.Now;
+                    transaction.type = "Withdraw";
+                    transaction.balance = newBalance;
+
+
+
+                    _context.Update(transaction);
+                    await _context.SaveChangesAsync();
+
+
+
+
+
+                }
+                catch
+                {
+                    ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
+                    return View();
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Your Balance is not sufficent to do transactions.";
+                return View();
+            }
+
+
+        }
+
+
+        
+
+
+        public IActionResult Transfer(int id)
+        {
+
+            ViewData["Id"] = id;
+            return View();
+
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Transfer(int id, int amount, int transId, string type)
+        {
+
+            if (amount > 0)
+            {
+
+                try
+                {
+                  Checking checking = new Checking();
+                    checking = await _context.Checking.FirstOrDefaultAsync(c => c.accountNumber == id);
+
+                    if (type == "checking")
+                    {
+                        Checking tochecking = new Checking();
+                        tochecking = await _context.Checking.FirstOrDefaultAsync(c => c.accountNumber == transId);
+
+                        if (tochecking != null)
+                        {
+                            if (checking.CustomerId != tochecking.CustomerId)
+                            {
+                                ViewData["ErrorMessage"] = $"You can only transfer between your own accounts";
+                                return View();
+                            }
+                            else
+                            {
+                                if (checking.Balance >= amount)
+                                {
+
+                                    var newBalance = (checking.Balance - amount);
+                                    checking.Balance = newBalance;
+
+                                    _context.Update(checking);
+                                    await _context.SaveChangesAsync();
+
+                                    Transaction transaction = new Transaction();
+                                    transaction.accountNumber = id;
+                                    transaction.accountType = "Checking";
+                                    transaction.amount = amount;
+                                    transaction.date = DateTime.Now;
+                                    transaction.type = "Transfer/withdraw";
+                                    transaction.balance = newBalance;
+                                    // transaction.balance = business.Balance;
+
+
+
+                                    _context.Update(transaction);
+                                    await _context.SaveChangesAsync();
+
+
+
+                                    var tonewBalance = (tochecking.Balance + amount);
+                                    tochecking.Balance = tonewBalance;
+
+                                    _context.Update(tochecking);
+                                    await _context.SaveChangesAsync();
+
+
+                                    Transaction tranSecond = new Transaction();
+                                    tranSecond.accountNumber = transId;
+                                    tranSecond.accountType = "Business";
+                                    tranSecond.amount = amount;
+                                    tranSecond.date = DateTime.Now;
+                                    tranSecond.type = "Transfer/Deposit ";
+                                    // transaction.balance = tochecking.Balance;
+
+                                    tranSecond.balance = tonewBalance;
+
+
+                                    _context.Update(tranSecond);
+                                    await _context.SaveChangesAsync();
+
+                                }
+                                else
+                                {
+                                    ViewData["ErrorMessage"] = $"Amount is not sufficent .";
+                                    return View();
+                                }
+                            }
+                        }
+
+
+
+                        else
+                        {
+                            ViewData["ErrorMessage"] = $"Please enter a valid account to transfer into.";
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        Checking tobusiness = new Checking();
+                        tobusiness = await _context.Checking.FirstOrDefaultAsync(c => c.accountNumber == transId);
+
+
+
+                        if (tobusiness != null)
+                        {
+                            if (checking.CustomerId != tobusiness.CustomerId)
+                            {
+                                ViewData["ErrorMessage"] = $"You can only transfer between your own accounts";
+                                return View();
+                            }
+                            else
+                            {
+                                if (checking.Balance >= amount)
+                                {
+
+                                    var newBalance = (checking.Balance - amount);
+                                    checking.Balance = newBalance;
+
+                                    _context.Update(checking);
+                                    await _context.SaveChangesAsync();
+
+                                    Transaction transaction = new Transaction();
+                                    transaction.accountNumber = id;
+                                    transaction.accountType = "Checking";
+                                    transaction.amount = amount;
+                                    transaction.date = DateTime.Now;
+                                    transaction.type = "Transfer/Withdraw";
+                                    transaction.balance = checking.Balance;
+
+
+
+                                    _context.Update(transaction);
+                                    await _context.SaveChangesAsync();
+
+
+                                    var tonewBalance = (tobusiness.Balance + amount);
+                                    tobusiness.Balance = tonewBalance;
+
+                                    _context.Update(tobusiness);
+                                    await _context.SaveChangesAsync();
+
+                                    Transaction tranSecond = new Transaction();
+                                    tranSecond.accountNumber = transId;
+                                    tranSecond.accountType = "Business";
+                                    tranSecond.amount = amount;
+                                    tranSecond.date = DateTime.Now;
+                                    tranSecond.type = "Transfer/Depsoit";
+                                    tranSecond.balance = tonewBalance;
+
+
+
+                                    _context.Update(tranSecond);
+                                    await _context.SaveChangesAsync();
+
+                                }
+
+                                else
+                                {
+                                    ViewData["ErrorMessage"] = $"The amount is not sufficent .";
+                                    return View();
+                                }
+                            }
+
+
+                        }
+                        else
+                        {
+                            ViewData["ErrorMessage"] = $"Please enter a valid account to transfer into.";
+                            return View();
+                        }
+                    }
+                }
+                catch
+                {
+                    ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
+                    return View();
+                }
+                return RedirectToAction(nameof(Index));
+
+
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "You can't transfer Negative Amount. ";
+                return View();
+            }
+
+        }
+
+        //End test
+
+
+
+
+
         // GET: Checkings/Create
         public IActionResult Create()
         {
@@ -66,6 +391,9 @@ namespace Project100.Controllers
                 checking.createdAt = DateTime.Now;
                 checking.InterestRate = 5;
                 checking.type = "Checking";
+                _context.Add(checking);
+                await _context.SaveChangesAsync();
+
 
                 Transaction transaction = new Transaction();
                 transaction.accountNumber = checking.accountNumber;
@@ -73,8 +401,9 @@ namespace Project100.Controllers
                 transaction.amount = checking.Balance;
                 transaction.date = DateTime.Now;
                 transaction.type = "Account Open";
+                transaction.balance = checking.Balance;
 
-                _context.Add(checking);
+                _context.Add(transaction);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

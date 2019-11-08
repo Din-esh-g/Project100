@@ -77,6 +77,8 @@ namespace Project100.Controllers
                 term.createdAt = DateTime.Now;
                 term.InterestRate = 5;
                 term.type = "Term";
+                _context.Add(term);
+                await _context.SaveChangesAsync();
 
                 Transaction transaction = new Transaction();
                 transaction.accountNumber = term.accountNumber;
@@ -85,7 +87,7 @@ namespace Project100.Controllers
                 transaction.date = DateTime.Now;
                 transaction.type = "Account Open";
 
-                _context.Add(term);
+                _context.Add(transaction);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

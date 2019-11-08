@@ -1,27 +1,90 @@
-﻿
-
-@{
-    ViewData["Title"] = "Home Page";
-}
-
-@*<div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    </div>*@
+﻿@*@{
+        ViewData["Title"] = "Home Page";
+    }*@
 
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Revature Bank </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-                <body>
-                    
-                        <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Business", "View", "Businesses") </button>
-                        <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Checking", "Index", "Checkings")</button>
-                        <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Terms", "ViewTerm", "Terms")</button>
-                        <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Loan", "CustomLoan", "Loans")</button>
-                    
+    <div class="container">
+        <h2>Welcome to Revature Bank </h2>
+        <br />
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+            </ol>
 
-                </body>
-              
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
 
+                <div class="item active">
+                    <img src="~/image/logo.png" alt="Revature Bank" style="max-height:30%;width:100%;">
+                    <div class="carousel-caption">
+                        <h3>Los Angeles</h3>
+                        <p>LA is always so much fun!</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="~/image/Checking.png" alt="Checking Account" style="max-height: 30%;width:100%;">
+                    <div class="carousel-caption">
+                        <h3>Checcking Account</h3>
+                        <p>Open Today</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="~/image/Checking.png" alt="Checking Account" style="max-height: 30%;width:100%;">
+                    <div class="carousel-caption">
+                        <h3>Checcking Account</h3>
+                        <p>Open Today</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="~/image/tt.jpg" alt="Bank With us" style="max-height: 30%; width: 100%";">
+                    <div class="carousel-caption">
+                        <h3>Revature Bank</h3>
+                        <p>Open Today</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="~/image/term.png" alt="Term Deposit" style="height: 30%;width:100%;">
+                    <div class="carousel-caption">
+                        <h3>Term Deposit</h3>
+                        <p>We love the Big Apple!</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
 

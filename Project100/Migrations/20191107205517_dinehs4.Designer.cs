@@ -10,8 +10,8 @@ using Project100.Models;
 namespace Project100.Migrations
 {
     [DbContext(typeof(BankContext))]
-    [Migration("20191105203417_firstMigration")]
-    partial class firstMigration
+    [Migration("20191107205517_dinehs4")]
+    partial class dinehs4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,8 +31,8 @@ namespace Project100.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
+                    b.Property<string>("CustomerId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CustomersId")
                         .HasColumnType("int");
@@ -63,8 +63,8 @@ namespace Project100.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
+                    b.Property<string>("CustomerId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CustomersId")
                         .HasColumnType("int");
@@ -92,23 +92,14 @@ namespace Project100.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("firstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("lastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("phoneNumber")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("registerId")
-                        .HasColumnType("int");
+                    b.Property<string>("registerId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -125,8 +116,8 @@ namespace Project100.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
+                    b.Property<string>("CustomerId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CustomersId")
                         .HasColumnType("int");
@@ -157,8 +148,8 @@ namespace Project100.Migrations
                     b.Property<double>("Balance")
                         .HasColumnType("float");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
+                    b.Property<string>("CustomerId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CustomersId")
                         .HasColumnType("int");
@@ -195,7 +186,10 @@ namespace Project100.Migrations
                     b.Property<int?>("CheckingaccountNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("CustomerId")
+                    b.Property<string>("CustomerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CustomerId1")
                         .HasColumnType("int");
 
                     b.Property<int?>("LoanaccountNumber")
@@ -228,7 +222,7 @@ namespace Project100.Migrations
 
                     b.HasIndex("CheckingaccountNumber");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CustomerId1");
 
                     b.HasIndex("LoanaccountNumber");
 
@@ -277,9 +271,7 @@ namespace Project100.Migrations
 
                     b.HasOne("Project100.Models.Class.Customers", "Customer")
                         .WithMany("Transaction")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId1");
 
                     b.HasOne("Project100.Models.Loan", "Loan")
                         .WithMany()

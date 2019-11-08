@@ -66,7 +66,9 @@ namespace Project100.Controllers
         // GET: Customers/Create
         public IActionResult Create()
         {
-            return View();
+          
+                return View();
+         
         }
 
         // POST: Customers/Create
@@ -76,15 +78,22 @@ namespace Project100.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,registerId,firstName,lastName")] Customers customers)
         {
+
+           
+
             if (ModelState.IsValid)
-            {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                customers.registerId = userId;
-                _context.Add(customers);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(customers);
+                {
+
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                    customers.registerId = userId;
+
+                    _context.Add(customers);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(customers);
+            
+         
         }
 
         // GET: Customers/Edit/5

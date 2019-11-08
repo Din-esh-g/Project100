@@ -25,11 +25,11 @@ namespace Project100.Controllers
             return View();
         }
 
-        public IActionResult ManinView(int? id)
+        public IActionResult ManinView(string id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (id != null)
+            if (id == null)
             {
                 return RedirectToAction("Index", "Home");
             }

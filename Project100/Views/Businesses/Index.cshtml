@@ -9,6 +9,8 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<h3>@ViewData["ErrorMessage"]</h3>
+
 <table class="table">
     <thead>
         <tr>
@@ -25,9 +27,9 @@
                 @Html.DisplayNameFor(model => model.createdAt)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomerId)
+                @Html.DisplayNameFor(model => model.accountNumber)
             </th>
-            <th></th>
+            <th>Transactions </th>
         </tr>
     </thead>
     <tbody>
@@ -46,12 +48,23 @@
                 @Html.DisplayFor(modelItem => item.createdAt)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerId)
+                @Html.DisplayFor(modelItem => item.accountNumber)
             </td>
+            <td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.accountNumber">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.accountNumber">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.accountNumber">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.accountNumber">Delete</a> |
+                <a asp-action="Deposit" asp-route-id="@item.accountNumber">Deposit</a> |
+                <a asp-action="Withdraw" asp-route-id="@item.accountNumber">Withdraw</a> |
+                <a asp-action="Transfer" asp-route-id="@item.accountNumber">Transfer</a>
+
+
+            </td>
+
+
+
+
             </td>
         </tr>
 }
