@@ -161,7 +161,6 @@ C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\
 C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Loans\CustomLoan.cshtml.g.cs
 C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Terms\ViewTerms.cshtml.g.cs
 C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Home\ManinView.cshtml.g.cs
-C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Loans\Deposit.cshtml.g.cs
 C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Customers\Create.cshtml.g.cs
 C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Customers\Delete.cshtml.g.cs
 C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Customers\Details.cshtml.g.cs
@@ -177,3 +176,5 @@ C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\
 C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Checkings\Withdraw.cshtml.g.cs
 C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Checkings\Transfer.cshtml.g.cs
 C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Loans\Payment.cshtml.g.cs
+C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Loans\Transfer.cshtml.g.cs
+C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Terms\Transfer.cshtml.g.cs

@@ -4,69 +4,84 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Business Accounts</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+>
 <h3>@ViewData["ErrorMessage"]</h3>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InterestRate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Balance)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.createdAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.accountNumber)
-            </th>
-            <th>Transactions </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InterestRate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Balance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.createdAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.accountNumber)
-            </td>
-            <td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.accountNumber">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.accountNumber">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.accountNumber">Delete</a> |
-                <a asp-action="Deposit" asp-route-id="@item.accountNumber">Deposit</a> |
-                <a asp-action="Withdraw" asp-route-id="@item.accountNumber">Withdraw</a> |
-                <a asp-action="Transfer" asp-route-id="@item.accountNumber">Transfer</a>
+<body style=" text-align:center">
+    <br />
+    <div>
+
+        <img src="~/image/logo.png" alt="Revature Bank " height="150" width="200">
+    </div>
+    <br />
+    <br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InterestRate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Balance)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.createdAt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.accountNumber)
+                </th>
+                <th>Transactions </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InterestRate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Balance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.createdAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.accountNumber)
+                    </td>
+                    
+                    <td>
+                        <a class="btn btn-info" role="button" asp-action="Create" asp-route-id="@item.accountNumber">New</a> |
+                        <a class="btn btn-info" role="button" asp-action="Edit" asp-route-id="@item.accountNumber">Edit</a> |
+                        <a class="btn btn-info" role="button" asp-action="Details" asp-route-id="@item.accountNumber">Details</a> |
+                        <a class="btn btn-info" role="button" asp-action="Delete" asp-route-id="@item.accountNumber">Delete</a> |
+                        <a class="btn btn-info" role="button" asp-action="Deposit" asp-route-id="@item.accountNumber">Deposit</a> |
+                        <a class="btn btn-info" role="button" asp-action="Withdraw" asp-route-id="@item.accountNumber">Withdraw</a> |
+                        <a class="btn btn-info" role="button" asp-action="Transfer" asp-route-id="@item.accountNumber">Transfer</a>
 
 
-            </td>
+                    </td>
 
 
 
 
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div>
+
+        <img src="~/image/bus.jpeg" alt="Revature Bank " height="150" width="400">
+    </div>
+</body>

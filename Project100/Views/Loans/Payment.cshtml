@@ -5,3 +5,39 @@
 
 <h1>Payment</h1>
 
+
+<p>@ViewData["ErrorMessage"]</p>
+
+
+
+<html>
+
+<body style="text-align:center">
+
+    <h3>Pay our Loan Installment..</h3>
+
+    <div>
+
+        <img src="~/image/logo.png" alt="Pay loan" height="150" width="200">
+    </div>
+<br />
+
+    <form asp-action="Payment">
+
+
+        <label>How much do you want to deposit?</label>
+        <input type="number" name="amount" />
+        <input type="hidden" asp-for=@ViewData["Id"] />
+        <input type="submit" value="Payment" class="btn btn-success" />
+    </form>
+    <br />
+
+
+    <div>
+
+        <img src="~/image/depo.jpg" alt="Pay loan" height="200" width="200">
+    </div>
+
+
+</body>
+</html>

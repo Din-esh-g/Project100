@@ -258,7 +258,7 @@ namespace Project100.Controllers
                                 }
                                 else
                                 {
-                                    ViewData["ErrorMessage"] = $"Amount is not sufficent .";
+                                    ViewData["ErrorMessage"] = "Amount is not sufficent .";
                                     return View();
                                 }
                             }
@@ -268,7 +268,7 @@ namespace Project100.Controllers
 
                         else
                         {
-                            ViewData["ErrorMessage"] = $"Please enter a valid account to transfer into.";
+                            ViewData["ErrorMessage"] = "Please enter a valid account to transfer into.";
                             return View();
                         }
                     }
@@ -283,7 +283,7 @@ namespace Project100.Controllers
                         {
                             if (checking.CustomerId != tobusiness.CustomerId)
                             {
-                                ViewData["ErrorMessage"] = $"You can only transfer between your own accounts";
+                                ViewData["ErrorMessage"] = "You can only transfer between your own accounts";
                                 return View();
                             }
                             else
@@ -334,7 +334,7 @@ namespace Project100.Controllers
 
                                 else
                                 {
-                                    ViewData["ErrorMessage"] = $"The amount is not sufficent .";
+                                    ViewData["ErrorMessage"] = "The amount is not sufficent .";
                                     return View();
                                 }
                             }
@@ -343,7 +343,7 @@ namespace Project100.Controllers
                         }
                         else
                         {
-                            ViewData["ErrorMessage"] = $"Please enter a valid account to transfer into.";
+                            ViewData["ErrorMessage"] = "Please enter a valid account to transfer into.";
                             return View();
                         }
                     }

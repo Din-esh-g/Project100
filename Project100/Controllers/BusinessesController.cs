@@ -39,7 +39,9 @@ namespace Project100.Controllers
         public async Task<IActionResult> View(string id)
 
         {
-           
+
+            var business = await _context.Business.FirstOrDefaultAsync
+          (m => m.CustomerId == id);
 
             if (id == null)
             {
@@ -47,8 +49,7 @@ namespace Project100.Controllers
             }
             else
             {
-                var business = await _context.Business.FirstOrDefaultAsync
-            (m => m.CustomerId == id);
+              
 
                 return View(business);
             }
@@ -101,14 +102,14 @@ namespace Project100.Controllers
                 }
                 catch
                 {
-                    ViewData["ErrorMessage"] = $"There was a problem with your withdrawl please try again";
+                    ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
                     return View();
                 }
                 return RedirectToAction(nameof(Index));
             }
             else
             {
-                ViewData["ErrorMessage"] = $"No Negative amount...........";
+                ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
                 return View();
             }
 
@@ -161,7 +162,7 @@ namespace Project100.Controllers
                 }
                 catch
                 {
-                    ViewData["ErrorMessage"] =$"There was a problem with your withdrawl please try again";
+                    ViewData["ErrorMessage"] ="There was a problem with your withdrawl please try again";
                     return View();
                 }
 
@@ -169,7 +170,7 @@ namespace Project100.Controllers
             }
             else
             {
-                ViewData["ErrorMessage"] = $"Your Balance is not sufficent to do transactions.";
+                ViewData["ErrorMessage"] = "Your Balance is not sufficent to do transactions.";
                 return View();
             }
 
@@ -211,7 +212,7 @@ namespace Project100.Controllers
                         {
                             if (business.CustomerId != tochecking.CustomerId)
                             {
-                                ViewData["ErrorMessage"] = $"You can only transfer between your own accounts";
+                                ViewData["ErrorMessage"] = "You can only transfer between your own accounts";
                                 return View();
                             }
                             else
@@ -290,7 +291,7 @@ namespace Project100.Controllers
                         {
                             if (business.CustomerId != tobusiness.CustomerId)
                             {
-                                ViewData["ErrorMessage"] = $"You can only transfer between your own accounts";
+                                ViewData["ErrorMessage"] = "You can only transfer between your own accounts";
                                 return View();
                             }
                             else
@@ -341,7 +342,7 @@ namespace Project100.Controllers
 
                                 else
                                 {
-                                    ViewData["ErrorMessage"] = $"The amount is not sufficent .";
+                                    ViewData["ErrorMessage"] = "The amount is not sufficent .";
                                     return View();
                                 }
                             }
@@ -350,7 +351,7 @@ namespace Project100.Controllers
                         }
                         else
                         {
-                            ViewData["ErrorMessage"] = $"Please enter a valid account to transfer into.";
+                            ViewData["ErrorMessage"] = "Please enter a valid account to transfer into.";
                             return View();
                         }
                     }
@@ -366,7 +367,7 @@ namespace Project100.Controllers
             }
             else
             {
-                ViewData["ErrorMessage"] = $"You can't transfer Negative Amount. ";
+                ViewData["ErrorMessage"] = "You can't transfer Negative Amount. ";
                 return View();
             }
 
@@ -515,7 +516,7 @@ namespace Project100.Controllers
             }
             else
             {
-                ViewData["ErrorMessage"] = $"Plese Clear the balance please";
+                ViewData["ErrorMessage"] = "Plese Clear the balance please";
                 return RedirectToAction(nameof(Index));
             }
         }
@@ -551,7 +552,7 @@ namespace Project100.Controllers
             }
             else
             {
-                ViewData["ErrorMessage"] = $"Plese Clear the balance please";
+                ViewData["ErrorMessage"] = "Plese Clear the balance please";
                 return RedirectToAction(nameof(Index));
             }
 

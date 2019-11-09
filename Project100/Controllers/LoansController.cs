@@ -49,8 +49,76 @@ namespace Project100.Controllers
 
         }
 
-
         public IActionResult Payment(int id)
+        {
+
+            ViewData["Id"] = id;
+            return View();
+
+
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Payment(int id, int amount)
+        {
+            if (amount > 0)
+            {
+
+
+                try
+                {
+                    Loan loan = new Loan();
+                    loan = await _context.Loan.FirstOrDefaultAsync(c => c.accountNumber == id);
+
+                    if (loan.Balance == 0 - amount)
+                    {
+                        var newBalance = (loan.Balance + amount);
+                        loan.Balance = newBalance;
+                        _context.Update(loan);
+                        await _context.SaveChangesAsync();
+
+
+                        Transaction transaction = new Transaction();
+                        transaction.accountNumber = id;
+                        transaction.accountType = "Loan";
+                        transaction.amount = amount;
+                        transaction.date = DateTime.Now;
+                        transaction.type = "Deposit";
+                        transaction.balance = newBalance;
+
+
+
+                        _context.Update(transaction);
+                        await _context.SaveChangesAsync();
+
+                    }
+                }
+                catch
+                {
+                    ViewData["ErrorMessage"] = "There was a problem with  your Transaction.";
+                    return View();
+                }
+            }
+
+            else
+            {
+                ViewData["ErrorMessage"] = "No Negative amount...........";
+                return View();
+            }
+
+                return RedirectToAction(nameof(Index));
+            }
+        
+
+        
+
+
+
+
+
+        public IActionResult Transfer(int id)
         {
 
 
@@ -64,7 +132,7 @@ namespace Project100.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Payment(int id, int amount, int tid, string type)
+        public async Task<IActionResult> Transfer(int id, int amount, int tid, string type)
         {
 
 
@@ -93,13 +161,13 @@ namespace Project100.Controllers
                         {
                             if (checking.CustomerId != loan.CustomerId)
                             {
-                                ViewData["ErrorMessage"] = $"You can only pay from your own accounts";
+                                ViewData["ErrorMessage"] = "You can only pay from your own accounts";
                                 return View();
                             }
                             else if (checking.Balance < amount)
                             {
 
-                                ViewData["ErrorMessage"] = $"You do not have enough money in that account to make this payment";
+                                ViewData["ErrorMessage"] = "You do not have enough money in that account to make this payment";
                                 return View();
                             }
 
@@ -210,7 +278,7 @@ namespace Project100.Controllers
                 ViewData["ErrorMessage"] = "There was a problem with your payment please try again";
                 return View();
             }
-            return RedirectToAction(nameof(CustomLon));
+            return RedirectToAction(nameof(Index));
 
 
         }
@@ -255,6 +323,7 @@ namespace Project100.Controllers
             if (ModelState.IsValid)
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                loan.Balance = (0 - loan.Balance);
                 loan.CustomerId = userId;
                 loan.createdAt = DateTime.Now;
                 loan.InterestRate = 7;
@@ -266,6 +335,9 @@ namespace Project100.Controllers
                 transaction.amount = loan.Balance;
                 transaction.date = DateTime.Now;
                 transaction.type = "Account Open";
+
+                _context.Add(transaction);
+                await _context.SaveChangesAsync();
 
                 _context.Add(loan);
                 await _context.SaveChangesAsync();
@@ -340,7 +412,16 @@ namespace Project100.Controllers
                 return NotFound();
             }
 
-            return View(loan);
+            if (loan.Balance == 0)
+            {
+
+                return View(loan);
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Plese Clear your account first.";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         // POST: Loans/Delete/5
@@ -349,9 +430,29 @@ namespace Project100.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var loan = await _context.Loan.FindAsync(id);
-            _context.Loan.Remove(loan);
-            await _context.SaveChangesAsync();
+            if (loan.Balance == 0) {
+
+                _context.Loan.Remove(loan);
+                await _context.SaveChangesAsync();
+
+                Transaction transaction = new Transaction();
+                transaction.accountNumber = loan.accountNumber;
+                transaction.accountType = "Loan";
+                transaction.amount = loan.Balance;
+                transaction.date = DateTime.Now;
+                transaction.type = "Account Closed";
+
+                _context.Add(transaction);
+                await _context.SaveChangesAsync();
+
+         
             return RedirectToAction(nameof(Index));
+        }
+            else
+            {
+                ViewData["ErrorMessage"] = "Plese Clear your account first.";
+                return RedirectToAction(nameof(Index));
+            }
         }
 
         private bool LoanExists(int id)
