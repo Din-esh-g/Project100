@@ -28,14 +28,19 @@ namespace Project100.Controllers
 
             return View(await _context.Term.ToListAsync());
             }
-            public IActionResult ViewTerm(int id)
+        //    public IActionResult ViewTerm(int id)
+        //{
+
+
+        //    ViewData["Id"] = id;
+        //    return View();
+
+
+        //}
+
+        public async Task<IActionResult> ViewTerms()
         {
-
-
-            ViewData["Id"] = id;
-            return View();
-
-
+            return View(await _context.Term.ToListAsync());
         }
 
 
@@ -423,8 +428,18 @@ namespace Project100.Controllers
             {
                 return NotFound();
             }
+            if (term.period == 0)
+            {
 
-            return View(term);
+
+                return View(term);
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
+                return View();
+
+            }
         }
 
         // POST: Terms/Delete/5
@@ -433,9 +448,17 @@ namespace Project100.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var term = await _context.Term.FindAsync(id);
-            _context.Term.Remove(term);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (term.period == 0)
+            {
+                _context.Term.Remove(term);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Not Mature Yet.";
+                return View();
+            }
         }
 
         private bool TermExists(int id)

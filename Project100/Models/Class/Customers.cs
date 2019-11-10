@@ -18,11 +18,11 @@ namespace Project100.Models.Class
         public string firstName { get; set; }
         [Display(Name = "Last Name")]
         public string lastName { get; set; }
-    
 
-     
 
-      
+
+
+
 
         //public Business Business { get; set; }
         //public Checking Checking { get; set; }
@@ -30,7 +30,7 @@ namespace Project100.Models.Class
         //public Loan Loan { get; set; }
 
         //public Transaction Transaction { get; set; }
-
+      //  public List<IAccount> Accounts{get;set;}
         public List<Business> Business { get; set; }
         public List<Checking> Checking { get; set; }
         public List<Term> Terms { get; set; }

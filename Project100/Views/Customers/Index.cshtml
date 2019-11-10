@@ -6,13 +6,16 @@
 
 <h1>Index</h1>
 
+
 <p>
-    <a asp-action="Create">Create New</a>
+    <a style="widows:initial" asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-          
+            <th>
+                @Html.DisplayNameFor(model => model.registerId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.firstName)
             </th>
@@ -23,9 +26,12 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
-            
+            <td>
+                @Html.DisplayFor(modelItem => item.registerId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.firstName)
             </td>
@@ -49,9 +55,8 @@
 
                 @Html.ActionLink("Business", "view", "Businesses", new { @id = item.Id }, null)
 
-
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

@@ -28,21 +28,17 @@ namespace Project100.Controllers
             return View(await _context.Customers.ToListAsync());
         }
 
-        public async Task<IActionResult> MyCustomer(string id)
+        //Test
+
+        //Test End
+
+
+
+
+
+        public async Task<IActionResult> MyCustomer()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var customers = await _context.Customers
-                .FirstOrDefaultAsync(m => m.registerId == id);
-            if (customers == null)
-            {
-                return NotFound();
-            }
-
-            return View(customers);
+            return View(await _context.Customers.ToListAsync());
         }
 
         // GET: Customers/Details/5

@@ -32,30 +32,30 @@
                         <ul class="dropdown-menu">
                             <li><a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="index">View User Info</a></li>
                             <li><a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="create">Create</a></li>
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Customres" asp-action="MyCustomer">Edit Name</a></li>
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Customers" asp-action="MyCustomer">Display All</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Checking <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link text-dark" asp-area="" asp-controller="Checkings" asp-action="create">Open Account</a></li>
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Checkings" asp-action="index">Dispaly All Account</a></li>
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Checkings" asp-action="Mychecking">Transaction</a></li>
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Checkings" asp-action="index">Manage Account</a></li>
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Checkings" asp-action="CheckingView">Transaction</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Business <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link text-dark" asp-area="" asp-controller="Businesses" asp-action="create">Open Account</a></li>
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Businesses" asp-action="index">Dispaly All Account</a></li>
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Businesses" asp-action="view">Transaction</a></li>
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Businesses" asp-action="index">Manage Account </a></li>
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Businesses" asp-action="BusinessView">Transaction</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Loan <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a class="nav-link text-dark" asp-area="" asp-controller="Loans" asp-action="create">Open Account</a></li>
-                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Loans" asp-action="index">Dispaly All Account</a></li>
+                            <li><a class="nav-link text-dark" asp-area="" asp-controller="Loans" asp-action="index">Manage Account </a></li>
                             <li><a class="nav-link text-dark" asp-area="" asp-controller="Loans" asp-action="CustomLoan">Transaction</a></li>
                         </ul>
                     </li>
@@ -75,8 +75,8 @@
 
                         </ul>
                     </li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Help</a></li>
+                    <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-controller="Home" asp-action="About">Help</a></li>
                 </ul>
             </div>
             </nav>

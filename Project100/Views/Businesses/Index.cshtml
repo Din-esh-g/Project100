@@ -67,7 +67,7 @@
                         <a class="btn btn-info" role="button" asp-action="Deposit" asp-route-id="@item.accountNumber">Deposit</a> |
                         <a class="btn btn-info" role="button" asp-action="Withdraw" asp-route-id="@item.accountNumber">Withdraw</a> |
                         <a class="btn btn-info" role="button" asp-action="Transfer" asp-route-id="@item.accountNumber">Transfer</a>
-
+                        <a asp-controller="Transactions" asp-action="DisplayRecord" asp-route-id="@item.accountNumber">View Transaction Log</a>
 
                     </td>
 

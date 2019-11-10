@@ -1,5 +1,6 @@
 ﻿using Project100.Models.Class;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Project100.Models
@@ -32,7 +33,7 @@ namespace Project100.Models
         //[ForeignKey("Customers")]
         //public Customers Customers { get; set; }
 
-
+      //  public List<Customers> Customers { get; set; }
 
 
 

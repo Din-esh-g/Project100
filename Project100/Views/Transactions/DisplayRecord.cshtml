@@ -5,6 +5,7 @@
 }
 
 <h1>DisplayRecord</h1>
+<a asp-controller="Transactions" asp-action="DisplayRecord" asp-route-id="@ViewData["Id"]" asp-route-type="@ViewData["Type"]">View Last 10 Transactions</a>
 
 <p>
     <a asp-action="Create">Create New</a>

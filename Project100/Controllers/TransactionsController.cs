@@ -27,14 +27,16 @@ namespace Project100.Controllers
             return View(await bankContext.ToListAsync());
         }
 
-        public async Task<IActionResult> DisplayRecord(int id, string type)
+     
+
+        public async Task<IActionResult> DisplayRecord(int id)
         {
             ViewData["Id"] = id;
-            ViewData["Type"] = type;
-            var detail = await _context.Transaction.Where(t => t.accountNumber == id && t.accountType == type).ToListAsync();
+           // ViewData["Type"] = type;
+            var detail = await _context.Transaction.Where(t => t.accountNumber == id).ToListAsync();
             return View(detail);
         }
-   
+
 
         // GET: Transactions/Details/5
         public async Task<IActionResult> Details(int? id)

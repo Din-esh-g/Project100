@@ -1,5 +1,6 @@
 ﻿using Project100.Models.Class;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Project100.Models
@@ -24,12 +25,14 @@ namespace Project100.Models
 
         [Display(Name = "Customer Id")]
         public string CustomerId { get; set; }
-        public virtual Customers Customers { get; set; }
+       // public virtual Customers Customers { get; set; }
 
         //[Required]
         //[ForeignKey("Customers")]
 
-        //public  Customers Customers { get; set; }
+        public  Customers Customers { get; set; }
+
+       // public List<Customers> Customers { get; set; }
 
     }
 }

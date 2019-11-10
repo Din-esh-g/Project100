@@ -28,6 +28,13 @@ namespace Project100.Controllers
             return View(await _context.Checking.ToListAsync());
         }
 
+
+        public async Task<IActionResult> CheckingView()
+        {
+            return View(await _context.Checking.ToListAsync());
+        }
+
+
         // GET: Checkings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -45,6 +52,7 @@ namespace Project100.Controllers
 
             return View(checking);
         }
+
 
         //test
 

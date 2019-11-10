@@ -28,7 +28,8 @@ namespace Project100.Models
         public DbSet<Checking> Checking { get; set; }
         public DbSet<Business> Business { get; set; }
         public DbSet<Term> Term { get; set; }
-        public DbSet<Loan> Loan { get; set; }        
+        public DbSet<Loan> Loan { get; set; }
+        //public DbSet<IAccount> Accounts { get; set; }
 
         public DbSet<Transaction> Transaction { get; set; }
 

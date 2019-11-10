@@ -32,6 +32,7 @@ namespace Project100.Models.Class
         [Display(Name = "Customer Id")]
         public string CustomerId { get; set; }
         public virtual Customers Customers { get; set; }
+       // public List<Customers> Customers { get; set; }
 
 
         //[Required]

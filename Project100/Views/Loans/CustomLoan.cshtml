@@ -52,6 +52,7 @@
                 <a asp-action="Edit" asp-route-id="@item.accountNumber">Editedddeddd</a> |
                 <a asp-action="Details" asp-route-id="@item.accountNumber">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.accountNumber">Delete</a>
+                <a asp-controller="Transactions" asp-action="GetLog" asp-route-id="@item.accountNumber">Statement</a>
             </td>
         </tr>
 }

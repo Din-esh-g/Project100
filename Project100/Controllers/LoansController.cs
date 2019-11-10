@@ -29,25 +29,31 @@ namespace Project100.Controllers
             return View(await _context.Loan.ToListAsync());
         }
 
-        //Test 
-        public async Task<IActionResult> CustomLon(string id)
+
+        public async Task<IActionResult> CustomLoan()
         {
-
-            if (id == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            var loan = await _context.Loan.FirstOrDefaultAsync
-              (m => m.CustomerId == id);
-            if (loan != null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            return View(loan);
-
+            return View(await _context.Loan.ToListAsync());
         }
+
+        //Test 
+        //public async Task<IActionResult> CustomLon(string id)
+        //{
+
+        //    if (id == null)
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+
+        //    var loan = await _context.Loan.FirstOrDefaultAsync
+        //      (m => m.CustomerId == id);
+        //    if (loan != null)
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+
+        //    return View(loan);
+
+        //}
 
         public IActionResult Payment(int id)
         {

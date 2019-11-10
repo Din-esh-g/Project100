@@ -25,20 +25,24 @@ namespace Project100.Controllers
             return View();
         }
 
-        public IActionResult ManinView(string id)
+        public IActionResult ManinView()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+       
+                
+                return View();
+        }
 
-            if (id == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return View(userId);
-            }
+    
+        public IActionResult About()
+        {
+            ViewData["ErrorMessage"] = "Your application description page.";
+            return View();
+        }
 
-
+        public IActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+            return View();
         }
 
         public IActionResult Privacy()

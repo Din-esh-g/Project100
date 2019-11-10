@@ -29,33 +29,68 @@ namespace Project100.Controllers
         }
 
 
+        public async Task<IActionResult> BusinessView()
+        {
+            return View(await _context.Business.ToListAsync());
+        }
+
+        //    public async Task<IActionResult> BusinessView(string id)
+        //{
+        //    try
+        //    {
+                                          
+
+        //        var business = await _context.Business.Where(b => b.CustomerId == id).ToListAsync();
+
+
+        //        if (business.Count == 0)
+        //        {
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //        else
+        //        {
+        //            return View(business);
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+
+
+        //}
+
+  
+
+
+
 
         //Test
 
-   
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> View(string id)
-
-        {
-
-            var business = await _context.Business.FirstOrDefaultAsync
-          (m => m.CustomerId == id);
-
-            if (id == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-              
-
-                return View(business);
-            }
 
 
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> View(string id)
+
+        //{
+
+        //    var business = await _context.Business.FirstOrDefaultAsync
+        //  (m => m.CustomerId == id);
+
+        //    if (id == null)
+        //    {
+        //        return RedirectToAction("Index", "Home");
+        //    }
+        //    else
+        //    {
+
+
+        //        return View(business);
+        //    }
+
+
+        //}
         public IActionResult Deposit(int id)
         {
 
@@ -68,7 +103,7 @@ namespace Project100.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Deposit(int id, int amount)
+        public async Task<IActionResult> Deposit(int id, double amount)
         {
             if (amount > 0)
             {

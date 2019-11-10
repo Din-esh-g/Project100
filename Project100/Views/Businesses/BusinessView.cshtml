@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Project100.Models.Class.Business>
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "BusinessView";
 }
 
 <h1>View</h1>
@@ -58,6 +58,7 @@
                     <a asp-action="Deposit" asp-route-id="@item.accountNumber">Deposit</a> |
                     <a asp-action="Withdraw" asp-route-id="@item.accountNumber">Withdraw</a> |
                     <a asp-action="Transfer" asp-route-id="@item.accountNumber">Transfer</a>
+                    <a asp-controller="Transactions" asp-action="DisplayRecord" asp-route-id="@item.accountNumber">Statement</a>
 
 
                 </td>

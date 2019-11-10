@@ -1,0 +1,15 @@
+﻿.carousel {
+    background: #2f4357;
+    margin-top: 20px;
+}
+
+.carousel-item {
+    margin-top: 20px;
+    text-align: center;
+    min-height: 280px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+    max-height: 350px;
+}
+
+.bs-example {
+    margin: 20px;
+}

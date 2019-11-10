@@ -1,5 +1,6 @@
 ﻿using Project100.Models.Class;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Project100.Models
@@ -30,18 +31,18 @@ namespace Project100.Models
             [Display(Name = "Balance")]
             public double balance { get; set; }
         public string CustomerId { get; set; }
-            public Customers Customer { get; set; }
-            public Checking Checking { get; set; }
+        public Customers Customer { get; set; }
+        public Checking Checking { get; set; }
             public Business Business { get; set; }
             public Loan Loan { get; set; }
             public Term Term { get; set; }
 
-            //public List<Business> Businesses { get; set; }
-            //public List<Checking> Checkings { get; set; }
-            //public List<Term> Terms { get; set; }
-            //public List<Loan> Loans { get; set; }
-            //public List<Customers> Customers{ get; set; }
+        //public List<Business> Businesses { get; set; }
+        //public List<Checking> Checkings { get; set; }
+        //public List<Term> Terms { get; set; }
+        //public List<Loan> Loans { get; set; }
+        //public List<Customers> Customers{ get; set; }
+        //public List<Customers> Customers { get; set; }
 
-
-        }
+    }
     }
