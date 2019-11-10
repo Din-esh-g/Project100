@@ -418,16 +418,16 @@ namespace Project100.Controllers
                 return NotFound();
             }
 
-            if (loan.Balance == 0)
-            {
+            //if (loan.Balance == 0)
+            //{
 
                 return View(loan);
-            }
-            else
-            {
-                ViewData["ErrorMessage"] = "Plese Clear your account first.";
-                return RedirectToAction(nameof(CustomLoan));
-            }
+            
+            //else
+            //{
+            //    ViewData["ErrorMessage"] = "Plese Clear your account first.";
+            //    return RedirectToAction(nameof(CustomLoan));
+            //}
         }
 
         // POST: Loans/Delete/5
@@ -436,7 +436,8 @@ namespace Project100.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var loan = await _context.Loan.FindAsync(id);
-            if (loan.Balance == 0) {
+            if (loan.Balance == 0)
+            {
 
                 _context.Loan.Remove(loan);
                 await _context.SaveChangesAsync();
@@ -453,13 +454,13 @@ namespace Project100.Controllers
 
          
             return RedirectToAction(nameof(CustomLoan));
-        }
-            else
+
+        }else
             {
                 ViewData["ErrorMessage"] = "Plese Clear your account first.";
                 return RedirectToAction(nameof(CustomLoan));
-            }
-        }
+    }
+}
 
         private bool LoanExists(int id)
         {

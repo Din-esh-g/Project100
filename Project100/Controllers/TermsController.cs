@@ -58,53 +58,66 @@ namespace Project100.Controllers
         public async Task<IActionResult> Withdraw(int id, int amount)
         {
             Term term = new Term();
+
             term = await _context.Term.FirstOrDefaultAsync(c => c.accountNumber == id);
-            if (term.Balance >= amount)
+            DateTime expdate = term.createdAt.AddMonths(term.period);
+
+
+            if (DateTime.Today == expdate)
             {
-
-                try
+                if (term.Balance >= amount)
                 {
 
-                    var newBalance = (term.Balance - amount);
-                    term.Balance = newBalance;
+                    try
+                    {
 
-                    _context.Update(term);
-                    await _context.SaveChangesAsync();
+                        var newBalance = (term.Balance - amount);
+                        term.Balance = newBalance;
 
-                    Transaction transaction = new Transaction();
-                    transaction.accountNumber = id;
-                    transaction.accountType = "Term Deposits";
-                    transaction.amount = amount;
-                    transaction.date = DateTime.Now;
-                    transaction.type = "Withdraw";
-                    transaction.balance = newBalance;
+                        _context.Update(term);
+                        await _context.SaveChangesAsync();
 
-
-
-                    _context.Update(transaction);
-                    await _context.SaveChangesAsync();
+                        Transaction transaction = new Transaction();
+                        transaction.accountNumber = id;
+                        transaction.accountType = "Term Deposits";
+                        transaction.amount = amount;
+                        transaction.date = DateTime.Now;
+                        transaction.type = "Withdraw";
+                        transaction.balance = newBalance;
 
 
 
+                        _context.Update(transaction);
+                        await _context.SaveChangesAsync();
 
 
+
+
+
+                    }
+                    catch
+                    {
+                        ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
+                        return View();
+                    }
+
+                    return RedirectToAction(nameof(ViewTerms));
                 }
-                catch
+                else
                 {
-                    ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
+                    ViewData["ErrorMessage"] = "Your Balance is not sufficent to do transactions.";
                     return View();
                 }
 
-                return RedirectToAction(nameof(ViewTerms));
             }
             else
             {
-                ViewData["ErrorMessage"] = "Your Balance is not sufficent to do transactions.";
+                ViewData["ErrorMessage"] = "You can't withdraw before mature.";
                 return View();
             }
-
-
         }
+
+        
 
 
 
@@ -428,18 +441,10 @@ namespace Project100.Controllers
             {
                 return NotFound();
             }
-            if (term.period == 0)
-            {
-
+            
 
                 return View(term);
-            }
-            else
-            {
-                ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
-                return View();
-
-            }
+        
         }
 
         // POST: Terms/Delete/5
@@ -448,12 +453,30 @@ namespace Project100.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var term = await _context.Term.FindAsync(id);
-            if (term.period == 0)
+
+                   
+
+            term = await _context.Term.FirstOrDefaultAsync(c => c.accountNumber == id);
+            DateTime expdate = term.createdAt.AddMonths(term.period);
+
+
+            if (DateTime.Today == expdate)
             {
-                _context.Term.Remove(term);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(ViewTerms));
-            }
+                if (term.Balance == 0)
+                {
+
+
+                    _context.Term.Remove(term);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(ViewTerms));
+        }
+                else
+                {
+                    ViewData["ErrorMessage"] = "Withdraw Amount First";
+                    return View();
+    }
+
+}
             else
             {
                 ViewData["ErrorMessage"] = "Not Mature Yet.";

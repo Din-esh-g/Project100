@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dines\\source\\repos\\Project100\\Project100\\Project100.csproj": {}
+    "C:\\Users\\dines\\Desktop\\Project100\\Project100\\Project100.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dines\\source\\repos\\Project100\\Project100\\Project100.csproj": {
+    "C:\\Users\\dines\\Desktop\\Project100\\Project100\\Project100.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dines\\source\\repos\\Project100\\Project100\\Project100.csproj",
+        "projectUniqueName": "C:\\Users\\dines\\Desktop\\Project100\\Project100\\Project100.csproj",
         "projectName": "Project100",
-        "projectPath": "C:\\Users\\dines\\source\\repos\\Project100\\Project100\\Project100.csproj",
+        "projectPath": "C:\\Users\\dines\\Desktop\\Project100\\Project100\\Project100.csproj",
         "packagesPath": "C:\\Users\\dines\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dines\\source\\repos\\Project100\\Project100\\obj\\",
+        "outputPath": "C:\\Users\\dines\\Desktop\\Project100\\Project100\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

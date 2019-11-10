@@ -4,13 +4,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 style=" text-align:center">Loan Accounts</h1>
+
+<div tyle=" text-align:center">
+
+    <img src="~/image/logo.png" alt="Revature Bank " height="150" width="200">
+</div>
+<br />
+<a class="btn btn-info" role="button" asp-action="create ">Open New Account</a> |
 
 <strong>@ViewData["ErrorMessage"]</strong>
 
-<p>
-    <a asp-action="Create"class="btn btn-info" role="button">Open New Account</a> |
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -33,34 +38,34 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InterestRate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Balance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.createdAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.accountNumber)
-            </td>
-            <td>
-              
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterestRate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.createdAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.accountNumber)
+                </td>
+                <td>
 
-                <a asp-action="Details"class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Details</a> |
-                <a asp-action="Delete" class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Closed </a> |
-                <a asp-action="Payment" class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Payment</a> |
-                <a asp-action="Transfer" class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Transfer </a> |
-                <a asp-controller="Transactions" class="btn btn-info" role="button" asp-action="DispalyRecord" asp-route-id="@item.accountNumber">Statement</a>
 
-            </td>
-        </tr>
-}
+                    <a asp-action="Details" class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Details</a> |
+                    <a asp-action="Delete" class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Closed </a> |
+
+                    <a asp-controller="Transactions" class="btn btn-info" role="button" asp-action="DispalyRecord" asp-route-id="@item.accountNumber">Statement</a>
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -7,20 +7,18 @@
 
 
 
-<h1 style=" text-align:center">Checkin Accounts</h1>
+<h1 style=" text-align:center">Checking Accounts</h1>
 
 <div tyle=" text-align:center">
 
-    <img src="~/image/logo.png" alt="Revature Bank " height="150" width="200">
+    <img src="~/image/logo.png" alt="Revature Bank " height="70" width="200">
 </div>
 <br />
-<a class="btn btn-info" role="button" asp-action="create ">Open New Account</a> |
+<a class="btn btn-info" role="button" asp-area="" asp-controller="Checkings" asp-action="create">Open New Account</a> |
 <body style="text-align:center">
     <p>@ViewData["ErrorMessage"]</p>
 
-    <p>
-        <a class="btn btn-info" role="button" asp-action="Create">New</a> |
-    </p>
+    
     <table class="table">
         <thead>
             <tr>
@@ -48,9 +46,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.createdAt)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.type)
-                </td>
+              
                 <td>
                     @Html.DisplayFor(modelItem => item.InterestRate)
                 </td>

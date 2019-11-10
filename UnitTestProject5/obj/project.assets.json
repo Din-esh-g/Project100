@@ -9763,11 +9763,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dines\\source\\repos\\Project100\\UnitTestProject5\\UnitTestProject5.csproj",
+      "projectUniqueName": "C:\\Users\\dines\\Desktop\\Project100\\UnitTestProject5\\UnitTestProject5.csproj",
       "projectName": "UnitTestProject5",
-      "projectPath": "C:\\Users\\dines\\source\\repos\\Project100\\UnitTestProject5\\UnitTestProject5.csproj",
+      "projectPath": "C:\\Users\\dines\\Desktop\\Project100\\UnitTestProject5\\UnitTestProject5.csproj",
       "packagesPath": "C:\\Users\\dines\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dines\\source\\repos\\Project100\\UnitTestProject5\\obj\\",
+      "outputPath": "C:\\Users\\dines\\Desktop\\Project100\\UnitTestProject5\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -9786,8 +9786,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Users\\dines\\source\\repos\\Project100\\Project100\\Project100.csproj": {
-              "projectPath": "C:\\Users\\dines\\source\\repos\\Project100\\Project100\\Project100.csproj"
+            "C:\\Users\\dines\\Desktop\\Project100\\Project100\\Project100.csproj": {
+              "projectPath": "C:\\Users\\dines\\Desktop\\Project100\\Project100\\Project100.csproj"
             }
           }
         }
