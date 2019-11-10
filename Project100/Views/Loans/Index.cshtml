@@ -9,7 +9,7 @@
 <strong>@ViewData["ErrorMessage"]</strong>
 
 <p>
-    
+    <a asp-action="Create">Open New Account</a> |
 </p>
 <table class="table">
     <thead>
@@ -51,13 +51,13 @@
                 @Html.DisplayFor(modelItem => item.accountNumber)
             </td>
             <td>
-                <a asp-action="Create" asp-route-id="@item.accountNumber">Open</a> |
+              
 
                 <a asp-action="Details" asp-route-id="@item.accountNumber">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.accountNumber">Closed </a> |
                 <a asp-action="Payment" asp-route-id="@item.accountNumber">Payment</a> |
                 <a asp-action="Transfer" asp-route-id="@item.accountNumber">Transfer </a> |
-                <a asp-controller="Transactions" asp-action="GetLog" asp-route-id="@item.accountNumber">Statement</a>
+                <a asp-controller="Transactions" asp-action="DispalyRecord" asp-route-id="@item.accountNumber">Statement</a>
 
             </td>
         </tr>

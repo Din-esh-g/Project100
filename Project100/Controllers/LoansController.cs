@@ -114,7 +114,7 @@ namespace Project100.Controllers
                 return View();
             }
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CustomLoan));
             }
         
 
@@ -204,7 +204,7 @@ namespace Project100.Controllers
                                 totransaction.accountType = "loan";
                                 totransaction.amount = amount;
                                 totransaction.date = DateTime.Now;
-                                totransaction.type = "made payment";
+                                totransaction.type = "Installment";
 
 
                                 _context.Update(loan);
@@ -284,7 +284,7 @@ namespace Project100.Controllers
                 ViewData["ErrorMessage"] = "There was a problem with your payment please try again";
                 return View();
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(CustomLoan));
 
 
         }
@@ -347,7 +347,7 @@ namespace Project100.Controllers
 
                 _context.Add(loan);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CustomLoan));
             }
             return View(loan);
         }
@@ -398,7 +398,7 @@ namespace Project100.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CustomLoan));
             }
             return View(loan);
         }
@@ -426,7 +426,7 @@ namespace Project100.Controllers
             else
             {
                 ViewData["ErrorMessage"] = "Plese Clear your account first.";
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CustomLoan));
             }
         }
 
@@ -452,12 +452,12 @@ namespace Project100.Controllers
                 await _context.SaveChangesAsync();
 
          
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(CustomLoan));
         }
             else
             {
                 ViewData["ErrorMessage"] = "Plese Clear your account first.";
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CustomLoan));
             }
         }
 

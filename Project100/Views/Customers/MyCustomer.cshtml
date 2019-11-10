@@ -1,60 +1,66 @@
 ﻿@model IEnumerable<Project100.Models.Class.Customers>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "MyCutomer";
 }
 
-<h1>Index</h1>
+    <body style="text-align:center">
 
 
-<p>
-    <a style="widows:initial" asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.registerId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.firstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.lastName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.registerId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.firstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.lastName)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        <div>
 
-                    <button class="btn btn-outline-success" type="submit"> @Html.ActionLink("Business", "view", "Businesses", new { @id = item.Id }, null) </button>
+            <img src="~/image/logo.png" alt="Revature Bank " height="150" width="200">
+        </div>
+        <br />
+        <br />
+        <h1>List of Customers with Same Register ID</h1>
+        <p>@ViewData["ErrorMessage"]</p>
 
-                    <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Checkings", "mychexc", "Checkings", new { @id = item.Id }, null)</button>
+        <p>
+            <a style="widows:initial" asp-action="Create">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                   
+                    <th>
+                        @Html.DisplayNameFor(model => model.firstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.lastName)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                      
+                        <td>
+                            @Html.DisplayFor(modelItem => item.firstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lastName)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
 
-                    <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Terms", "Index", "Terms", new { @id = item.Id }, null)</button>
+                            @*<button class="btn btn-outline-success" type="submit"> @Html.ActionLink("Business", "Businessview", "Businesses", new { @id = item.Id }, null) </button>
 
-                    <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Loans", "CutomLoan", "Loans", new { @id = item.Id }, null)</button>
-                    <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Transactions", "DisplayRecords", "Transactions", new { @id = item.Id }, null)</button>
+                            <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Checkings", "CheckingView", "Checkings", new { @id = item.Id }, null)</button>
+
+                            <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Terms", "ViewTerms", "Terms", new { @id = item.Id }, null)</button>
+
+                            <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Loans", "CutomLoan", "Loans", new { @id = item.Id }, null)</button>
+                            <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Transactions", "DisplayRecords", "Transactions", new { @id = item.Id }, null)</button>*@
 
 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>

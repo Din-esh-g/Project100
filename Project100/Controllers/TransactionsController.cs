@@ -75,7 +75,7 @@ namespace Project100.Controllers
             {
                 _context.Add(transaction);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(DisplayRecord));
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", transaction.CustomerId);
             return View(transaction);
@@ -128,7 +128,7 @@ namespace Project100.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(DisplayRecord));
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "Id", "Id", transaction.CustomerId);
             return View(transaction);

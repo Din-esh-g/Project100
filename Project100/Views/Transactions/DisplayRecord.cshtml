@@ -4,69 +4,74 @@
     ViewData["Title"] = "DisplayRecord";
 }
 
-<h1>DisplayRecord</h1>
-<a asp-controller="Transactions" asp-action="DisplayRecord" asp-route-id="@ViewData["Id"]" asp-route-type="@ViewData["Type"]">View Last 10 Transactions</a>
+    <body style="text-align:center">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.accountNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.numberOfMonth)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.accountType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.accountNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.numberOfMonth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.accountType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        <div>
+
+            <img src="~/image/logo.png" alt="Revature Bank " height="150" width="200">
+        </div>
+
+        <p>@ViewData["ErrorMessage"]</p>
+        <h1>Your Statement for your selected Account. </h1>
+
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.accountNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.accountType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.amount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.balance)
+                    </th>
+
+                    <th>Transactions</th>
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.accountNumber)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.accountType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.balance)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>

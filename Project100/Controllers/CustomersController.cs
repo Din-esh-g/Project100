@@ -85,7 +85,7 @@ namespace Project100.Controllers
 
                     _context.Add(customers);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(MyCustomer));
                 }
                 return View(customers);
             

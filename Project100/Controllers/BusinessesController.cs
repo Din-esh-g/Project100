@@ -140,7 +140,7 @@ namespace Project100.Controllers
                     ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
                     return View();
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(BusinessView));
             }
             else
             {
@@ -165,7 +165,7 @@ namespace Project100.Controllers
         {
             Business business = new Business();
             business = await _context.Business.FirstOrDefaultAsync(c => c.accountNumber == id);
-            if (business.Balance+5000 >= amount)
+            if (business.Balance+5000 >= amount)//Limit is 5000
             {
 
                 try
@@ -201,7 +201,7 @@ namespace Project100.Controllers
                     return View();
                 }
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(BusinessView));
             }
             else
             {
@@ -396,7 +396,7 @@ namespace Project100.Controllers
                     ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
                     return View();
                 }
-                return RedirectToAction(nameof(View));
+                return RedirectToAction(nameof(BusinessView));
 
 
             }
@@ -467,7 +467,7 @@ namespace Project100.Controllers
 
                 _context.Update(transaction);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(BusinessView));
 
 
 
@@ -521,7 +521,7 @@ namespace Project100.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(BusinessView));
             }
             return View(business);
         }
@@ -552,7 +552,7 @@ namespace Project100.Controllers
             else
             {
                 ViewData["ErrorMessage"] = "Plese Clear the balance please";
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(BusinessView));
             }
         }
         
@@ -583,12 +583,12 @@ namespace Project100.Controllers
                 await _context.SaveChangesAsync();
 
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(BusinessView));
             }
             else
             {
                 ViewData["ErrorMessage"] = "Plese Clear the balance please";
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(BusinessView));
             }
 
 

@@ -95,7 +95,7 @@ namespace Project100.Controllers
                     return View();
                 }
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ViewTerms));
             }
             else
             {
@@ -290,7 +290,7 @@ namespace Project100.Controllers
                     ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
                     return View();
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ViewTerms));
 
 
             }
@@ -358,7 +358,7 @@ namespace Project100.Controllers
 
                 _context.Add(transaction);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ViewTerms));
             }
             return View(term);
         }
@@ -409,7 +409,7 @@ namespace Project100.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ViewTerms));
             }
             return View(term);
         }
@@ -452,7 +452,7 @@ namespace Project100.Controllers
             {
                 _context.Term.Remove(term);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ViewTerms));
             }
             else
             {

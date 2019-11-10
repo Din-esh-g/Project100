@@ -105,7 +105,7 @@ namespace Project100.Controllers
                     ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
                     return View();
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CheckingView));
             }
             else
             {
@@ -166,7 +166,7 @@ namespace Project100.Controllers
                     return View();
                 }
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CheckingView));
             }
             else
             {
@@ -361,7 +361,7 @@ namespace Project100.Controllers
                     ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
                     return View();
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CheckingView));
 
 
             }
@@ -413,7 +413,7 @@ namespace Project100.Controllers
 
                 _context.Add(transaction);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CheckingView));
             }
             return View(checking);
         }
@@ -464,7 +464,7 @@ namespace Project100.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CheckingView));
             }
             return View(checking);
         }
@@ -493,9 +493,17 @@ namespace Project100.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var checking = await _context.Checking.FindAsync(id);
-            _context.Checking.Remove(checking);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (checking.Balance == 0)
+            {
+                _context.Checking.Remove(checking);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "Please clear the balance. ";
+                return View();
+            }
         }
 
         private bool CheckingExists(int id)
