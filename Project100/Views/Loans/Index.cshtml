@@ -9,7 +9,7 @@
 <strong>@ViewData["ErrorMessage"]</strong>
 
 <p>
-    <a asp-action="Create">Open New Account</a> |
+    <a asp-action="Create"class="btn btn-info" role="button">Open New Account</a> |
 </p>
 <table class="table">
     <thead>
@@ -53,11 +53,11 @@
             <td>
               
 
-                <a asp-action="Details" asp-route-id="@item.accountNumber">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.accountNumber">Closed </a> |
-                <a asp-action="Payment" asp-route-id="@item.accountNumber">Payment</a> |
-                <a asp-action="Transfer" asp-route-id="@item.accountNumber">Transfer </a> |
-                <a asp-controller="Transactions" asp-action="DispalyRecord" asp-route-id="@item.accountNumber">Statement</a>
+                <a asp-action="Details"class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Details</a> |
+                <a asp-action="Delete" class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Closed </a> |
+                <a asp-action="Payment" class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Payment</a> |
+                <a asp-action="Transfer" class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Transfer </a> |
+                <a asp-controller="Transactions" class="btn btn-info" role="button" asp-action="DispalyRecord" asp-route-id="@item.accountNumber">Statement</a>
 
             </td>
         </tr>

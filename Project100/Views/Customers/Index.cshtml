@@ -39,21 +39,11 @@
                 @Html.DisplayFor(modelItem => item.lastName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit"class="btn btn-info" role="button" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" class="btn btn-info" role="button" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" class="btn btn-info" role="button" asp-route-id="@item.Id">Delete</a>
 
-                <button class="btn btn-outline-success" type="submit"> @Html.ActionLink("Business", "view", "Businesses", new { @id = item.Id }, null) </button>
-
-                <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Checkings", "Index", "Checkings", new { @id = item.Id }, null)</button>
-
-                <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Terms", "Index", "Terms", new { @id = item.Id }, null)</button>
-
-                <button class="btn btn-outline-success" type="submit">@Html.ActionLink("Loans", "Index", "Loans", new { @id = item.Id }, null)</button>
-                <button asp-controller="Transactions" asp-action="DisplayRecord" asp-route-id="@item.Id" asp-route-type="Transactions"> Transaction</button>
-                @*@Html.ActionLink("LinkName", "ActionName", "ControllerName", new { @id = idValue, @secondParam = = 2 }, null)*@
-
-                @Html.ActionLink("Business", "view", "Businesses", new { @id = item.Id }, null)
+               
 
             </td>
         </tr>
