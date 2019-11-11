@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Project100.Models;
 using Project100.Models.Class;
 
@@ -17,16 +18,37 @@ namespace Project100.Controllers
     {
         private readonly BankContext _context;
 
+        //Test
+
+       //private readonly ILogger<BusinessesController> _logger;
+
+
+       //public BusinessesController(ILogger<BusinessesController> logger)
+       // {
+       //   _logger = logger;
+       //}
+             
+
+        //End test
+
         public BusinessesController(BankContext context)
         {
             _context = context;
+
+
         }
+               
 
         // GET: Businesses
         public async Task<IActionResult> Index()
         {
             return View(await _context.Business.ToListAsync());
         }
+
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _logger.Business.ToListAsync());
+        //}
 
 
         public async Task<IActionResult> BusinessView()
@@ -65,32 +87,8 @@ namespace Project100.Controllers
 
 
 
-        //Test
-
-
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> View(string id)
-
-        //{
-
-        //    var business = await _context.Business.FirstOrDefaultAsync
-        //  (m => m.CustomerId == id);
-
-        //    if (id == null)
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    else
-        //    {
-
-
-        //        return View(business);
-        //    }
-
-
-        //}
+  
+        
         public IActionResult Deposit(int id)
         {
 

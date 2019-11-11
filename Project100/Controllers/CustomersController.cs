@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Project100.Models;
 using Project100.Models.Class;
 
@@ -21,6 +22,18 @@ namespace Project100.Controllers
         {
             _context = context;
         }
+
+
+        //private readonly ILogger<CustomersController> _logger;
+
+
+        //public CustomersController(ILogger<CustomersController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+
+
 
         // GET: Customers
         public async Task<IActionResult> Index()

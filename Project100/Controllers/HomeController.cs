@@ -35,7 +35,7 @@ namespace Project100.Controllers
     
         public IActionResult About()
         {
-            ViewData["ErrorMessage"] = "Your application description page.";
+            ViewData["ErrorMessage"] = "Your application About page.";
             return View();
         }
 

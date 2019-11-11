@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Project100.Models;
 using Project100.Models.Class;
 
@@ -21,7 +22,16 @@ namespace Project100.Controllers
         {
             _context = context;
         }
+        //
+        //private readonly ILogger<CheckingsController> _logger;
 
+
+        //public CheckingsController(ILogger<CheckingsController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        //Test End
         // GET: Checkings
         public async Task<IActionResult> Index()
         {

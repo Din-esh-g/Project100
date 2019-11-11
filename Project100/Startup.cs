@@ -68,6 +68,8 @@ namespace Project100
 
             app.UseAuthentication();
             app.UseAuthorization();
+            //to take a id to connect the users
+           // app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
