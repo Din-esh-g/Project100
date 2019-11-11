@@ -9,7 +9,7 @@ using Project100.Models;
 namespace UnitTestProject5
 {
     [TestClass]
-    public class DepositTest
+    public class ProjectUnitTest
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -133,6 +133,78 @@ namespace UnitTestProject5
         }
 
 
+
+
+        [TestMethod]
+        public void Term_Withdraws_ID()
+        {
+            TermsController controller = new TermsController(_context);
+
+            int id = 1;
+            ViewResult result = controller.Withdraw(id) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+
+        }
+
+
+        [TestMethod]
+        public void Loan_Payment_ID()
+        {
+            LoansController controller = new LoansController(_context);
+
+            int id = 1;
+            ViewResult result = controller.Payment(id) as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+
+        }
+
+        //[TestMethod]
+        //public void Transaction_DispalyRecord_Id(int id)
+        //{
+        //    TransactionsController controller = new TransactionsController(_context);
+
+
+        //    ViewResult result = controller.DisplayRecord(id) as ViewResult;
+
+        //    // Assert
+        //    Assert.IsNotNull(result);
+
+        //}
+
+
+
+       
+
+       // [TestInitialize]
+       // public void Setup()
+       // {
+       //     CheckingsController controller = new CheckingsController(_context);
+       //     this._toTest =  controller.Deposit(int id, double amt);
+
+       // [TestMethod]
+       // public void ATest()
+       // {
+       //     this.Perform_ATest(1, 1, 2);
+       //     this.Setup();
+
+       //     this.Perform_ATest(100, 200, 300);
+       //     this.Setup();
+
+       //     this.Perform_ATest(817001, 212, 817213);
+       //     this.Setup();
+
+       // }
+
+       //public void Perform_ATest(int a, int b, int expected)
+       // {
+       //     //Obviously this would be way more complex...
+
+       //     Assert.IsTrue(this._toTest.Add(a, b) == expected);
+       // }
 
 
 

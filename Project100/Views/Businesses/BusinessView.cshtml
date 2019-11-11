@@ -23,6 +23,9 @@
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.accountNumber)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.createdAt)
                 </th>
 
@@ -39,33 +42,36 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.accountNumber)
+                </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.createdAt)
-                    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.createdAt)
+                </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.InterestRate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Balance)
-                    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InterestRate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
 
-                    <td>
-
-
-                        <a class="btn btn-info" role="button" asp-action="Delete" asp-route-id="@item.accountNumber">Delete</a> |
-                        <a class="btn btn-info" role="button" asp-action="Deposit" asp-route-id="@item.accountNumber">Deposit</a> |
-                        <a class="btn btn-info" role="button" asp-action="Withdraw" asp-route-id="@item.accountNumber">Withdraw</a> |
-                        <a class="btn btn-info" role="button" asp-action="Transfer" asp-route-id="@item.accountNumber">Transfer</a>|
-                        <a class="btn btn-info" role="button" asp-controller="Transactions" asp-action="DisplayRecord" asp-route-id="@item.accountNumber">Statement</a>
-
-                    </td>
+                <td>
 
 
+                    <a class="btn btn-info" role="button" asp-action="Delete" asp-route-id="@item.accountNumber">Delete</a> |
+                    <a class="btn btn-info" role="button" asp-action="Deposit" asp-route-id="@item.accountNumber">Deposit</a> |
+                    <a class="btn btn-info" role="button" asp-action="Withdraw" asp-route-id="@item.accountNumber">Withdraw</a> |
+                    <a class="btn btn-info" role="button" asp-action="Transfer" asp-route-id="@item.accountNumber">Transfer</a>|
+                    <a class="btn btn-info" role="button" asp-controller="Transactions" asp-action="DisplayRecord" asp-route-id="@item.accountNumber">Statement</a>
 
-                </tr>
+                </td>
+
+
+
+            </tr>
             }
         </tbody>
     </table>

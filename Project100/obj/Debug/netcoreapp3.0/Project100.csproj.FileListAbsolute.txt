@@ -365,3 +365,4 @@ C:\Users\dines\Desktop\Project100\Project100\obj\Debug\netcoreapp3.0\Project100.
 C:\Users\dines\Desktop\Project100\Project100\obj\Debug\netcoreapp3.0\Project100.dll
 C:\Users\dines\Desktop\Project100\Project100\obj\Debug\netcoreapp3.0\Project100.pdb
 C:\Users\dines\Desktop\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Terms\Withdraw.cshtml.g.cs
+C:\Users\dines\source\repos\Project100\Project100\obj\Debug\netcoreapp3.0\Razor\Views\Terms\Withdraw.cshtml.g.cs

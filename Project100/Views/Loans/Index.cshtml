@@ -62,7 +62,7 @@
                     <a asp-action="Details" class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Details</a> |
                     <a asp-action="Delete" class="btn btn-info" role="button" asp-route-id="@item.accountNumber">Closed </a> |
 
-                    <a asp-controller="Transactions" class="btn btn-info" role="button" asp-action="DispalyRecord" asp-route-id="@item.accountNumber">Statement</a>
+                    <a class="btn btn-info" role="button" asp-controller="Transactions" asp-action="DisplayRecord" asp-route-id="@item.accountNumber">Statement</a>
 
                 </td>
             </tr>

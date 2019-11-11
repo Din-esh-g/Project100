@@ -3,15 +3,10 @@
     ViewData["Title"] = "Payment";
 }
 
-<h1>Payment</h1>
+
 
 
 <p>@ViewData["ErrorMessage"]</p>
-
-<div tyle=" text-align:center">
-
-    <img src="~/image/logo.png" alt="Revature Bank " height="150" width="200">
-</div>
 
 <html>
 
@@ -28,7 +23,7 @@
     <form asp-action="Payment">
 
 
-        <label>How much do you want to deposit?</label>
+        <label>How much do you want to Pay today?</label>
         <input type="number" name="amount" />
         <input type="hidden" asp-for=@ViewData["Id"] />
         <input type="submit" value="Payment" class="btn btn-success" />
@@ -38,7 +33,7 @@
 
     <div>
 
-        <img src="~/image/depo.jpg" alt="Pay loan" height="200" width="200">
+        <img src="~/image/depo.jpg" alt="Pay loan" height="150" width="200">
     </div>
 
 
