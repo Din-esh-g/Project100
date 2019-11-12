@@ -365,6 +365,12 @@ namespace Project100.Controllers
                             return View();
                         }
                     }
+
+                    //   else if   Loans toLoans = new Loans();
+                    //  toLoans = await _context.Loans.FirstOrDefaultAsync(c => c.accountNumber == transId);
+                    //all the ativities and logice to  tested here,
+                    //else Terms toTerms = new Terms();
+                    //
                 }
                 catch
                 {

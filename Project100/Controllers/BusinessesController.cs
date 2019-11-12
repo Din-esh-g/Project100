@@ -384,9 +384,18 @@ namespace Project100.Controllers
                         }
                         else
                         {
-                            ViewData["ErrorMessage"] = "Please enter a valid account to transfer into.";
+                            ViewData["ErrorMessage"] = "Please enter a valid account to Transfer into.";
                             return View();
                         }
+
+                        //else if   Loans toLoans = new Loans();
+                      //  toLoans = await _context.Loans.FirstOrDefaultAsync(c => c.accountNumber == transId);
+                      //all the ativities and logice to  tested here,
+                      //else Terms toTerms = new Terms();
+                      //
+
+
+
                     }
                 }
                 catch
