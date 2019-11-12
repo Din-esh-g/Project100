@@ -117,206 +117,206 @@ namespace Project100.Controllers
             }
         }
 
-        
+
+
+        #region 
+
+        //Transfer Test start
+
+        //public IActionResult Transfer(int id)
+        //{
+
+        //    ViewData["Id"] = id;
+        //    return View();
+
+
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Transfer(int id, int amount, int transId, string type)
+        //{
+
+        //    if (amount > 0)
+        //    {
+
+        //        try
+        //        {
+        //            Term terms = new Term();
+        //            terms = await _context.Term.FirstOrDefaultAsync(c => c.accountNumber == id);
+
+        //            if (type == "checking")
+        //            {
+        //                Checking tochecking = new Checking();
+        //                tochecking = await _context.Checking.FirstOrDefaultAsync(c => c.accountNumber == transId);
+
+        //                if (tochecking != null)
+        //                {
+        //                    if (terms.CustomerId != tochecking.CustomerId)
+        //                    {
+        //                        ViewData["ErrorMessage"] = "You can only transfer between your own accounts";
+        //                        return View();
+        //                    }
+        //                    else
+        //                    {
+        //                        if (terms.Balance >= amount)
+        //                        {
+
+        //                            var newBalance = (terms.Balance - amount);
+        //                            terms.Balance = newBalance;
+
+        //                            _context.Update(terms);
+        //                            await _context.SaveChangesAsync();
+
+        //                            Transaction transaction = new Transaction();
+        //                            transaction.accountNumber = id;
+        //                            transaction.accountType = "Terms";
+        //                            transaction.amount = amount;
+        //                            transaction.date = DateTime.Now;
+        //                            transaction.type = "Transfer/withdraw";
+        //                            transaction.balance = newBalance;
+        //                            // transaction.balance = business.Balance;
 
 
 
-
-
-        public IActionResult Transfer(int id)
-        {
-
-            ViewData["Id"] = id;
-            return View();
-
-
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Transfer(int id, int amount, int transId, string type)
-        {
-
-            if (amount > 0)
-            {
-
-                try
-                {
-                    Term terms = new Term();
-                    terms = await _context.Term.FirstOrDefaultAsync(c => c.accountNumber == id);
-
-                    if (type == "checking")
-                    {
-                        Checking tochecking = new Checking();
-                        tochecking = await _context.Checking.FirstOrDefaultAsync(c => c.accountNumber == transId);
-
-                        if (tochecking != null)
-                        {
-                            if (terms.CustomerId != tochecking.CustomerId)
-                            {
-                                ViewData["ErrorMessage"] = "You can only transfer between your own accounts";
-                                return View();
-                            }
-                            else
-                            {
-                                if (terms.Balance >= amount)
-                                {
-
-                                    var newBalance = (terms.Balance - amount);
-                                    terms.Balance = newBalance;
-
-                                    _context.Update(terms);
-                                    await _context.SaveChangesAsync();
-
-                                    Transaction transaction = new Transaction();
-                                    transaction.accountNumber = id;
-                                    transaction.accountType = "Terms";
-                                    transaction.amount = amount;
-                                    transaction.date = DateTime.Now;
-                                    transaction.type = "Transfer/withdraw";
-                                    transaction.balance = newBalance;
-                                    // transaction.balance = business.Balance;
+        //                            _context.Update(transaction);
+        //                            await _context.SaveChangesAsync();
 
 
 
-                                    _context.Update(transaction);
-                                    await _context.SaveChangesAsync();
+        //                            var tonewBalance = (tochecking.Balance + amount);
+        //                            tochecking.Balance = tonewBalance;
+
+        //                            _context.Update(tochecking);
+        //                            await _context.SaveChangesAsync();
+
+
+        //                            Transaction tranSecond = new Transaction();
+        //                            tranSecond.accountNumber = transId;
+        //                            tranSecond.accountType = "Business";
+        //                            tranSecond.amount = amount;
+        //                            tranSecond.date = DateTime.Now;
+        //                            tranSecond.type = "Transfer/Deposit ";
+        //                            // transaction.balance = tochecking.Balance;
+
+        //                            tranSecond.balance = tonewBalance;
+
+
+        //                            _context.Update(tranSecond);
+        //                            await _context.SaveChangesAsync();
+
+        //                        }
+        //                        else
+        //                        {
+        //                            ViewData["ErrorMessage"] = "Amount is not sufficent .";
+        //                            return View();
+        //                        }
+        //                    }
+        //                }
 
 
 
-                                    var tonewBalance = (tochecking.Balance + amount);
-                                    tochecking.Balance = tonewBalance;
-
-                                    _context.Update(tochecking);
-                                    await _context.SaveChangesAsync();
-
-
-                                    Transaction tranSecond = new Transaction();
-                                    tranSecond.accountNumber = transId;
-                                    tranSecond.accountType = "Business";
-                                    tranSecond.amount = amount;
-                                    tranSecond.date = DateTime.Now;
-                                    tranSecond.type = "Transfer/Deposit ";
-                                    // transaction.balance = tochecking.Balance;
-
-                                    tranSecond.balance = tonewBalance;
-
-
-                                    _context.Update(tranSecond);
-                                    await _context.SaveChangesAsync();
-
-                                }
-                                else
-                                {
-                                    ViewData["ErrorMessage"] = "Amount is not sufficent .";
-                                    return View();
-                                }
-                            }
-                        }
+        //                else
+        //                {
+        //                    ViewData["ErrorMessage"] = "Please enter a valid account to transfer into.";
+        //                    return View();
+        //                }
+        //            }
+        //            else if (type == "Business")
+        //            {
+        //                Business tobusiness = new Business();
+        //                tobusiness = await _context.Business.FirstOrDefaultAsync(c => c.accountNumber == transId);
 
 
 
-                        else
-                        {
-                            ViewData["ErrorMessage"] = "Please enter a valid account to transfer into.";
-                            return View();
-                        }
-                    }
-                    else if (type == "Business")
-                    {
-                        Business tobusiness = new Business();
-                        tobusiness = await _context.Business.FirstOrDefaultAsync(c => c.accountNumber == transId);
+        //                if (tobusiness != null)
+        //                {
+        //                    if (terms.CustomerId != tobusiness.CustomerId)
+        //                    {
+        //                        ViewData["ErrorMessage"] = "You can only transfer between your own accounts";
+        //                        return View();
+        //                    }
+        //                    else
+        //                    {
+        //                        if (terms.Balance >= amount)
+        //                        {
+
+        //                            var newBalance = (terms.Balance - amount);
+        //                            terms.Balance = newBalance;
+
+        //                            _context.Update(terms);
+        //                            await _context.SaveChangesAsync();
+
+        //                            Transaction transaction = new Transaction();
+        //                            transaction.accountNumber = id;
+        //                            transaction.accountType = "Terms";
+        //                            transaction.amount = amount;
+        //                            transaction.date = DateTime.Now;
+        //                            transaction.type = "Transfer/Withdraw";
+        //                            transaction.balance = terms.Balance;
 
 
 
-                        if (tobusiness != null)
-                        {
-                            if (terms.CustomerId != tobusiness.CustomerId)
-                            {
-                                ViewData["ErrorMessage"] = "You can only transfer between your own accounts";
-                                return View();
-                            }
-                            else
-                            {
-                                if (terms.Balance >= amount)
-                                {
+        //                            _context.Update(transaction);
+        //                            await _context.SaveChangesAsync();
 
-                                    var newBalance = (terms.Balance - amount);
-                                    terms.Balance = newBalance;
 
-                                    _context.Update(terms);
-                                    await _context.SaveChangesAsync();
+        //                            var tonewBalance = (tobusiness.Balance + amount);
+        //                            tobusiness.Balance = tonewBalance;
 
-                                    Transaction transaction = new Transaction();
-                                    transaction.accountNumber = id;
-                                    transaction.accountType = "Terms";
-                                    transaction.amount = amount;
-                                    transaction.date = DateTime.Now;
-                                    transaction.type = "Transfer/Withdraw";
-                                    transaction.balance = terms.Balance;
+        //                            _context.Update(tobusiness);
+        //                            await _context.SaveChangesAsync();
+
+        //                            Transaction tranSecond = new Transaction();
+        //                            tranSecond.accountNumber = transId;
+        //                            tranSecond.accountType = "Business";
+        //                            tranSecond.amount = amount;
+        //                            tranSecond.date = DateTime.Now;
+        //                            tranSecond.type = "Transfer/Depsoit";
+        //                            tranSecond.balance = tonewBalance;
 
 
 
-                                    _context.Update(transaction);
-                                    await _context.SaveChangesAsync();
+        //                            _context.Update(tranSecond);
+        //                            await _context.SaveChangesAsync();
+
+        //                        }
+
+        //                        else
+        //                        {
+        //                            ViewData["ErrorMessage"] = "The amount is not sufficent .";
+        //                            return View();
+        //                        }
+        //                    }
 
 
-                                    var tonewBalance = (tobusiness.Balance + amount);
-                                    tobusiness.Balance = tonewBalance;
-
-                                    _context.Update(tobusiness);
-                                    await _context.SaveChangesAsync();
-
-                                    Transaction tranSecond = new Transaction();
-                                    tranSecond.accountNumber = transId;
-                                    tranSecond.accountType = "Business";
-                                    tranSecond.amount = amount;
-                                    tranSecond.date = DateTime.Now;
-                                    tranSecond.type = "Transfer/Depsoit";
-                                    tranSecond.balance = tonewBalance;
-
-
-
-                                    _context.Update(tranSecond);
-                                    await _context.SaveChangesAsync();
-
-                                }
-
-                                else
-                                {
-                                    ViewData["ErrorMessage"] = "The amount is not sufficent .";
-                                    return View();
-                                }
-                            }
+        //                }
+        //                else
+        //                {
+        //                    ViewData["ErrorMessage"] = "Please enter a valid account to transfer into.";
+        //                    return View();
+        //                }
+        //            }
+        //        }
+        //        catch
+        //        {
+        //            ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
+        //            return View();
+        //        }
+        //        return RedirectToAction(nameof(ViewTerms));
 
 
-                        }
-                        else
-                        {
-                            ViewData["ErrorMessage"] = "Please enter a valid account to transfer into.";
-                            return View();
-                        }
-                    }
-                }
-                catch
-                {
-                    ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
-                    return View();
-                }
-                return RedirectToAction(nameof(ViewTerms));
+        //    }
+        //    else
+        //    {
+        //        ViewData["ErrorMessage"] = "You can't transfer Negative Amount. ";
+        //        return View();
+        //    }
 
+        //}
 
-            }
-            else
-            {
-                ViewData["ErrorMessage"] = "You can't transfer Negative Amount. ";
-                return View();
-            }
-
-        }
-
-
-
+        //Test End for Transfer
+        #endregion
 
 
 
@@ -353,7 +353,9 @@ namespace Project100.Controllers
         public async Task<IActionResult> Create([Bind("period,type,accountNumber,InterestRate,Balance,createdAt,CustomerId")] Term term)
         {
             if (ModelState.IsValid)
+
             {
+               
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 term.CustomerId = userId;
                 term.createdAt = DateTime.Now;

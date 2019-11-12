@@ -309,7 +309,7 @@ namespace Project100.Controllers
 
                         else
                         {
-                            ViewData["ErrorMessage"] = $"Please enter a valid account to transfer into.";
+                            ViewData["ErrorMessage"] = "Please enter a valid account to transfer into.";
                             return View();
                         }
                     }
@@ -324,7 +324,7 @@ namespace Project100.Controllers
                         {
                             if (business.CustomerId != tobusiness.CustomerId)
                             {
-                                ViewData["ErrorMessage"] = "You can only transfer between your own accounts";
+                                ViewData["ErrorMessage"] = "You can only transfer between your own Accounts";
                                 return View();
                             }
                             else

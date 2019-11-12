@@ -292,8 +292,8 @@ namespace Project100.Controllers
                     }
                     else
                     {
-                        Checking tobusiness = new Checking();
-                        tobusiness = await _context.Checking.FirstOrDefaultAsync(c => c.accountNumber == transId);
+                        Business tobusiness = new Business();
+                        tobusiness = await _context.Business.FirstOrDefaultAsync(c => c.accountNumber == transId);
 
 
 
@@ -361,14 +361,14 @@ namespace Project100.Controllers
                         }
                         else
                         {
-                            ViewData["ErrorMessage"] = "Please enter a valid account to transfer into.";
+                            ViewData["ErrorMessage"] = "Account Number Does not Match .";
                             return View();
                         }
                     }
                 }
                 catch
                 {
-                    ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
+                    ViewData["ErrorMessage"] = "There was a problem with your Transfer Transactions please try again";
                     return View();
                 }
                 return RedirectToAction(nameof(CheckingView));
