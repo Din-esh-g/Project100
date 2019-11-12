@@ -507,12 +507,12 @@ namespace Project100.Controllers
             {
                 _context.Checking.Remove(checking);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CheckingView));
             }
             else
             {
                 ViewData["ErrorMessage"] = "Please clear the balance. ";
-                return View();
+                 return View(checking);
             }
         }
 

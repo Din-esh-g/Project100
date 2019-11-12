@@ -475,14 +475,14 @@ namespace Project100.Controllers
                 else
                 {
                     ViewData["ErrorMessage"] = "Withdraw Amount First";
-                    return View();
+                    return View(term);
     }
 
 }
             else
             {
-                ViewData["ErrorMessage"] = "Not Mature Yet.";
-                return View();
+                ViewData["ErrorMessage"] = $"Not Mature Yet. Fund will be avilable after {expdate}";
+                return View(term);
             }
         }
 

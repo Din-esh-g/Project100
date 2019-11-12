@@ -35,25 +35,7 @@ namespace Project100.Controllers
             return View(await _context.Loan.ToListAsync());
         }
 
-        //Test 
-        //public async Task<IActionResult> CustomLon(string id)
-        //{
 
-        //    if (id == null)
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-
-        //    var loan = await _context.Loan.FirstOrDefaultAsync
-        //      (m => m.CustomerId == id);
-        //    if (loan != null)
-        //    {
-        //        return RedirectToAction("Index", "Home");
-        //    }
-
-        //    return View(loan);
-
-        //}
 
         public IActionResult Payment(int id)
         {
@@ -116,183 +98,183 @@ namespace Project100.Controllers
 
                 return RedirectToAction(nameof(CustomLoan));
             }
-        
-
-        
 
 
 
 
 
-        public IActionResult Transfer(int id)
-        {
+# region Transfer Not Implement yet
 
 
-            ViewData["Id"] = id;
-            return View();
+        //public IActionResult Transfer(int id)
+        //{
+
+
+        //    ViewData["Id"] = id;
+        //    return View();
 
 
 
-        }
+        //}
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Transfer(int id, int amount, int tid, string type)
-        {
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Transfer(int id, int amount, int tid, string type)
+        //{
 
 
-            try
-            {
-                Loan loan = new Loan();
-                loan = await _context.Loan.FirstOrDefaultAsync(c => c.accountNumber == id);
+        //    try
+        //    {
+        //        Loan loan = new Loan();
+        //        loan = await _context.Loan.FirstOrDefaultAsync(c => c.accountNumber == id);
 
-                var x = 0 - amount;
-
-
-                if (x < loan.Balance)
-                {
-                    ViewData["ErrorMessage"] = "You can not pay more than the balance of your loan";
-                    return View();
-                }
-
-                else
-                {
-                    if (type == "checking")
-                    {
-                        Checking checking = new Checking();
-                        checking = await _context.Checking.FirstOrDefaultAsync(c => c.accountNumber == tid);
-
-                        if (checking != null)
-                        {
-                            if (checking.CustomerId != loan.CustomerId)
-                            {
-                                ViewData["ErrorMessage"] = "You can only pay from your own accounts";
-                                return View();
-                            }
-                            else if (checking.Balance < amount)
-                            {
-
-                                ViewData["ErrorMessage"] = "You do not have enough money in that account to make this payment";
-                                return View();
-                            }
-
-                            else
-                            {
-                                var newBalance = (checking.Balance - amount);
-                                checking.Balance = newBalance;
-
-                                Transaction transaction = new Transaction();
-                                transaction.accountNumber = id;
-                                transaction.accountType = "checking";
-                                transaction.amount = amount;
-                                transaction.date = DateTime.Now;
-                                transaction.type = "transfer out";
-
-                                _context.Update(checking);
-                                await _context.SaveChangesAsync();
+        //        var x = 0 - amount;
 
 
-                                _context.Update(transaction);
-                                await _context.SaveChangesAsync();
+        //        if (x < loan.Balance)
+        //        {
+        //            ViewData["ErrorMessage"] = "You can not pay more than the balance of your loan";
+        //            return View();
+        //        }
 
-                                var newLoanBalance = (loan.Balance + amount);
-                                loan.Balance = newLoanBalance;
+        //        else
+        //        {
+        //            if (type == "checking")
+        //            {
+        //                Checking checking = new Checking();
+        //                checking = await _context.Checking.FirstOrDefaultAsync(c => c.accountNumber == tid);
 
-                                Transaction totransaction = new Transaction();
-                                totransaction.accountNumber = id;
-                                totransaction.accountType = "loan";
-                                totransaction.amount = amount;
-                                totransaction.date = DateTime.Now;
-                                totransaction.type = "Installment";
+        //                if (checking != null)
+        //                {
+        //                    if (checking.CustomerId != loan.CustomerId)
+        //                    {
+        //                        ViewData["ErrorMessage"] = "You can only pay from your own accounts";
+        //                        return View();
+        //                    }
+        //                    else if (checking.Balance < amount)
+        //                    {
 
+        //                        ViewData["ErrorMessage"] = "You do not have enough money in that account to make this payment";
+        //                        return View();
+        //                    }
 
-                                _context.Update(loan);
-                                await _context.SaveChangesAsync();
+        //                    else
+        //                    {
+        //                        var newBalance = (checking.Balance - amount);
+        //                        checking.Balance = newBalance;
 
-                                _context.Update(totransaction);
-                                await _context.SaveChangesAsync();
-                            }
-                        }
-                        else
-                        {
-                            ViewData["ErrorMessage"] = "You have selected an invalid account";
-                            return View();
-                        }
+        //                        Transaction transaction = new Transaction();
+        //                        transaction.accountNumber = id;
+        //                        transaction.accountType = "checking";
+        //                        transaction.amount = amount;
+        //                        transaction.date = DateTime.Now;
+        //                        transaction.type = "transfer out";
 
-                    }
-                    else
-                    {
-                        Business business = new Business();
-                        business = await _context.Business.FirstOrDefaultAsync(c => c.accountNumber == tid);
-
-                        if (business != null)
-                        {
-                            if (business.CustomerId != loan.CustomerId)
-                            {
-                                ViewData["ErrorMessage"] = $"You can only pay from your own accounts";
-                                return View();
-                            }
-                            else
-                            {
-                                var newBalance = (business.Balance - amount);
-                                business.Balance = newBalance;
-
-                                Transaction transaction = new Transaction();
-                                transaction.accountNumber = id;
-                                transaction.accountType = "business";
-                                transaction.amount = amount;
-                                transaction.date = DateTime.Now;
-                                transaction.type = "transer out";
-
-                                _context.Update(business);
-                                await _context.SaveChangesAsync();
+        //                        _context.Update(checking);
+        //                        await _context.SaveChangesAsync();
 
 
-                                _context.Update(transaction);
-                                await _context.SaveChangesAsync();
+        //                        _context.Update(transaction);
+        //                        await _context.SaveChangesAsync();
 
-                                var newLoanBalance = (loan.Balance + amount);
-                                loan.Balance = newLoanBalance;
+        //                        var newLoanBalance = (loan.Balance + amount);
+        //                        loan.Balance = newLoanBalance;
 
-                                Transaction totransaction = new Transaction();
-                                totransaction.accountNumber = id;
-                                totransaction.accountType = "loan";
-                                totransaction.amount = amount;
-                                totransaction.date = DateTime.Now;
-                                totransaction.type = "made payment";
-
-
-                                _context.Update(loan);
-                                await _context.SaveChangesAsync();
-
-                                _context.Update(totransaction);
-                                await _context.SaveChangesAsync();
-                            }
-                        }
-                        else
-                        {
-                            ViewData["ErrorMessage"] = "You have selected an invalid account";
-                            return View();
-                        }
-                    }
-
-                }
-            }
-            catch
-            {
-                ViewData["ErrorMessage"] = "There was a problem with your payment please try again";
-                return View();
-            }
-            return RedirectToAction(nameof(CustomLoan));
+        //                        Transaction totransaction = new Transaction();
+        //                        totransaction.accountNumber = id;
+        //                        totransaction.accountType = "loan";
+        //                        totransaction.amount = amount;
+        //                        totransaction.date = DateTime.Now;
+        //                        totransaction.type = "Installment";
 
 
-        }
+        //                        _context.Update(loan);
+        //                        await _context.SaveChangesAsync();
+
+        //                        _context.Update(totransaction);
+        //                        await _context.SaveChangesAsync();
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    ViewData["ErrorMessage"] = "You have selected an invalid account";
+        //                    return View();
+        //                }
+
+        //            }
+        //            else
+        //            {
+        //                Business business = new Business();
+        //                business = await _context.Business.FirstOrDefaultAsync(c => c.accountNumber == tid);
+
+        //                if (business != null)
+        //                {
+        //                    if (business.CustomerId != loan.CustomerId)
+        //                    {
+        //                        ViewData["ErrorMessage"] = $"You can only pay from your own accounts";
+        //                        return View();
+        //                    }
+        //                    else
+        //                    {
+        //                        var newBalance = (business.Balance - amount);
+        //                        business.Balance = newBalance;
+
+        //                        Transaction transaction = new Transaction();
+        //                        transaction.accountNumber = id;
+        //                        transaction.accountType = "business";
+        //                        transaction.amount = amount;
+        //                        transaction.date = DateTime.Now;
+        //                        transaction.type = "transer out";
+
+        //                        _context.Update(business);
+        //                        await _context.SaveChangesAsync();
+
+
+        //                        _context.Update(transaction);
+        //                        await _context.SaveChangesAsync();
+
+        //                        var newLoanBalance = (loan.Balance + amount);
+        //                        loan.Balance = newLoanBalance;
+
+        //                        Transaction totransaction = new Transaction();
+        //                        totransaction.accountNumber = id;
+        //                        totransaction.accountType = "loan";
+        //                        totransaction.amount = amount;
+        //                        totransaction.date = DateTime.Now;
+        //                        totransaction.type = "made payment";
+
+
+        //                        _context.Update(loan);
+        //                        await _context.SaveChangesAsync();
+
+        //                        _context.Update(totransaction);
+        //                        await _context.SaveChangesAsync();
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    ViewData["ErrorMessage"] = "You have selected an invalid account";
+        //                    return View();
+        //                }
+        //            }
+
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        ViewData["ErrorMessage"] = "There was a problem with your payment please try again";
+        //        return View();
+        //    }
+        //    return RedirectToAction(nameof(CustomLoan));
+
+
+        //}
 
 
         //End test
 
-
+#endregion
 
 
         // GET: Loans/Details/5
@@ -418,17 +400,18 @@ namespace Project100.Controllers
                 return NotFound();
             }
 
-            //if (loan.Balance == 0)
-            //{
+            if (loan.Balance == 0)
+            {
 
                 return View(loan);
-            
-            //else
-            //{
-            //    ViewData["ErrorMessage"] = "Plese Clear your account first.";
-            //    return RedirectToAction(nameof(CustomLoan));
-            //}
-        }
+
+            }
+            else
+            {
+                ViewData["ErrorMessage"] = "plese clear your account first.";
+                return View(loan);
+            }
+            }
 
         // POST: Loans/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -457,9 +440,9 @@ namespace Project100.Controllers
 
         }else
             {
-                ViewData["ErrorMessage"] = "Plese Clear your account first.";
-                return RedirectToAction(nameof(CustomLoan));
-    }
+                ViewData["ErrorMessage"] = "plese clear your account first.";
+                return View(loan);
+            }
 }
 
         private bool LoanExists(int id)

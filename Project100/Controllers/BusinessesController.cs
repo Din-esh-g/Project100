@@ -135,14 +135,14 @@ namespace Project100.Controllers
                 }
                 catch
                 {
-                    ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
+                    ViewData["ErrorMessage"] = "There was a problem with your transaction please try again";
                     return View();
                 }
                 return RedirectToAction(nameof(BusinessView));
             }
             else
             {
-                ViewData["ErrorMessage"] = "There was a problem with your withdrawl please try again";
+                ViewData["ErrorMessage"] = "There was a problem with your transaction please try again";
                 return View();
             }
 
@@ -549,8 +549,8 @@ namespace Project100.Controllers
             }
             else
             {
-                ViewData["ErrorMessage"] = "Plese Clear the balance please";
-                return RedirectToAction(nameof(BusinessView));
+                ViewData["ErrorMessage"] = "Plese Clear the balance.";
+                return View(business);
             }
         }
         
@@ -585,8 +585,8 @@ namespace Project100.Controllers
             }
             else
             {
-                ViewData["ErrorMessage"] = "Plese Clear the balance please";
-                return RedirectToAction(nameof(BusinessView));
+                ViewData["ErrorMessage"] = "Plese Clear the balance.";
+                return View(business);
             }
 
 
